@@ -15,6 +15,7 @@ import SenseSection from './components/sections/SenseSection';
 import SeeSection from './components/sections/SeeSection';
 import ConnectSection from './components/sections/ConnectSection';
 import OperationsSection from './components/sections/OperationsSection';
+import CyberRoverX5Section from './components/sections/CyberRoverX5Section';
 import SpecsSection from './components/sections/SpecsSection';
 import FinaleSection from './components/sections/FinaleSection';
 
@@ -58,16 +59,19 @@ export default function App() {
         {/* 06 // OPTICAL SYSTEM & ARTICULATED HEAD */}
         <SeeSection />
 
-        {/* 07 // DISTRIBUTED SYSTEM TOPOLOGY */}
+        {/* 07 // DISTRIBUTED SYSTEM TOPOLOGY & CYBER OS */}
         <ConnectSection />
 
         {/* 08 // OPERATIONAL THEATERS */}
         <OperationsSection />
 
-        {/* 09 // ENGINEERING DATASHEET */}
+        {/* 09 // FUTURE ROADMAP: CYBERROVER X5 */}
+        <CyberRoverX5Section />
+
+        {/* 10 // ENGINEERING DATASHEET */}
         <SpecsSection />
 
-        {/* 10 // FINALE */}
+        {/* 11 // FINALE */}
         <FinaleSection />
       </main>
 

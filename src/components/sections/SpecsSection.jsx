@@ -6,11 +6,12 @@ const SPEC_TABS = [
     id: 'chassis',
     label: 'CHASSIS & TRACTION',
     specs: [
-      { param: 'Propulsion Configuration', val: '4WD Independent Geared DC Motors' },
-      { param: 'Motor Drivers', val: 'Dual L298N Dual H-Bridge Modules' },
+      { param: 'Propulsion Configuration', val: '4WD Independent High-Torque Geared DC Motors' },
+      { param: 'Motor Drivers', val: 'Dual BTS7960 43A High-Current MOSFET H-Bridges' },
+      { param: 'Motor Acceleration Profiling', val: 'ATmega328P Hardware PWM Slew-Rate Ramping' },
       { param: 'Steering Method', val: 'Differential Skid Steering (Zero-Turn Radius)' },
-      { param: 'Operating Ground Clearance', val: '45 mm (Carbon-Reinforced Frame)' },
-      { param: 'Max Continuous Incline', val: '28° Grade' },
+      { param: 'Operating Ground Clearance', val: '45 mm (High-Impact Engineering Chassis)' },
+      { param: 'Max Continuous Incline', val: '32° Rubble Grade' },
       { param: 'Total Platform Mass', val: '2.85 kg (Including Battery & Sensor Pod)' },
       { param: 'Max Usable Payload', val: '3.50 kg' }
     ]
@@ -19,39 +20,37 @@ const SPEC_TABS = [
     id: 'sensors',
     label: 'HAZMAT & SENSING SUITE',
     specs: [
-      { param: 'Obstacle Detection', val: '3x HC-SR04 Ultrasonic Acoustic Transducers' },
-      { param: 'Sonar Angular Coverage', val: '120° Forward Sector (-45°, 0°, +45°)' },
-      { param: 'Combustible Gas & Smoke', val: 'MQ-2 SnO2 Semiconductor Sensor (LPG, CH4, Smoke)' },
-      { param: 'Carbon Monoxide Detector', val: 'MQ-7 High/Low Thermal Cycling Sensor (CO)' },
-      { param: 'Air Quality & Ammonia', val: 'MQ-135 Multi-Gas Sensor (NH3, NOx, Benzene)' },
+      { param: 'Combustible & Mine Gas', val: 'MQ-4 SnO2 Sensor (Methane CH4, Natural Gas, LEL 5%)' },
+      { param: 'Carbon Monoxide Asphyxiant', val: 'MQ-7 Thermal Cycling Sensor (CO 20 - 2000 ppm)' },
+      { param: 'Hazardous Air Quality & NH3', val: 'MQ-135 Sensor (Ammonia, NOx, Benzene, Volatiles)' },
+      { param: 'Barometer & Structural Altitude', val: 'BMP-280 MEMS Sensor (300-1100 hPa, ±1m Altitude)' },
+      { param: 'Local Sensor HUD Display', val: '16x2 I2C Liquid Crystal Display (Node 04 Nano)' },
       { param: 'Thermal & Relative Humidity', val: 'DHT-22 Digital Sensor (-40°C to +80°C, 0-100% RH)' },
-      { param: 'Power Bus Monitoring', val: 'Precision Resistive Voltage Divider ADC' }
+      { param: 'Obstacle Sonar Radar', val: 'HC-SR04 Ultrasonic Sensor on SG90 Sweep Servo (120°)' }
     ]
   },
   {
     id: 'vision_compute',
-    label: 'COMPUTE & COMPUTER VISION',
+    label: 'COMPUTE & DISTRIBUTED MCUs',
     specs: [
-      { param: 'Optical Capture Node', val: 'ESP32-CAM (OV2640 2MP Sensor)' },
-      { param: 'Video Stream Profile', val: '640x480 MJPEG @ 24 FPS' },
-      { param: 'Articulated Gimbal', val: '2-Axis Dual SG90 Micro-Servos (Pan: 180°, Tilt: 90°)' },
-      { param: 'Edge Vision Engine', val: 'OpenCV 4.8.0 (Python 3.11 Host)' },
-      { param: 'Object Detection Pipeline', val: 'Haar Cascade Frontal Face Classifier + Motion Diff' },
-      { param: 'Closed-Loop Control', val: 'Proportional-Integral-Derivative (PID) 20ms Loop' },
-      { param: 'Multimodal NLU Model', val: 'Google Gemini 1.5 Flash API' },
-      { param: 'Voice Telemetry Synthesis', val: 'Microsoft Edge Neural TTS (en-US-Christopher)' }
+      { param: 'Node 01: Remote Controller', val: 'ESP32 DevKit V1 (Core 0: 35Hz Cyber OS, Core 1: 100Hz RF)' },
+      { param: 'Node 02: Rover Master', val: 'ESP32-S3 (CRC-8 Checksum, WS2812 RGB, 500ms Watchdog)' },
+      { param: 'Node 03: Motor & Sound Brain', val: 'Arduino Uno (BTS7960 43A PWM + 10-Tone SoundEngine)' },
+      { param: 'Node 04: Gas Sensor Node', val: 'Arduino Nano (ADC Gas Acquisition + 16x2 I2C Display)' },
+      { param: 'Node 05: Telemetry Hub & FPV', val: 'ESP32-CAM (OV2640 640x480 MJPEG + REST Server)' },
+      { param: 'Node 06: Ground Cockpit', val: 'Laptop Mission Dashboard (Web Audio + Telemetry HUD)' }
     ]
   },
   {
     id: 'power_network',
-    label: 'ELECTRICAL & RF BUS',
+    label: 'ELECTRICAL & RF PROTOCOL',
     specs: [
-      { param: 'Primary Battery Chemistry', val: '3S Li-Po (11.8V Nominal, 3000mAh)' },
-      { param: 'Power Distribution', val: 'Dual Buck Converters (Isolated 5V / 3.3V Logic Rails)' },
-      { param: 'Wireless Interconnect', val: '2.4 GHz 802.11 b/g/n Dedicated Hotspot' },
-      { param: 'Network Protocol', val: 'Bidirectional UDP / HTTP REST / WebSockets' },
-      { param: 'Average Telemetry Latency', val: '< 18 ms (Host to ESP32 End-to-End)' },
-      { param: 'Operational Battery Runtime', val: '90 - 120 Minutes Continuous Mission Cycle' }
+      { param: 'Layer 1: Drive RF Bus', val: 'ESP-NOW 2.4GHz Peer-to-Peer Radio (100Hz, < 1ms Airtime)' },
+      { param: 'Layer 2: Telemetry Wi-Fi', val: '802.11 b/g/n Hotspot (REST JSON Endpoint + MJPEG Stream)' },
+      { param: 'End-to-End Control Latency', val: '< 10 ms Deterministic Braking & Steering' },
+      { param: 'Primary Battery Chemistry', val: '3S Li-Po / Li-Ion (11.85V Nominal, 3000mAh)' },
+      { param: 'Power Rail Isolation', val: 'Dual LM2596 Step-Down Buck Converters (Isolated 5V / 3.3V Logic)' },
+      { param: 'Fail-Safe Protection', val: '500ms Radio Loss Auto-Brake + Physical E-Brake Switch' }
     ]
   }
 ];

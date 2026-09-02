@@ -9,13 +9,13 @@ import sensorDht22Img from '../../assets/sensor_dht22.jpg';
 const SENSOR_MODULES = [
   {
     id: 0,
-    code: 'MQ-2',
-    name: 'Combustible Hydrocarbons & Smoke',
+    code: 'MQ-4',
+    name: 'Methane (CH4) & Mine Deflagration Sensor',
     image: sensorMq2Img,
-    tech: 'SnO2 Semiconductor Thin-Film Layer',
-    targets: 'LPG, Propane, Methane (CH4), Smoke, Alcohol',
-    work: 'Detects combustible gas concentrations by measuring surface electrical conductivity variation across the heated SnO2 layer. Instant early deflagration warning.',
-    spec: 'ANALOG ADC / SENSITIVITY: 200 - 10000 PPM'
+    tech: 'SnO2 Micro-Sensor with High CH4 Selectivity',
+    targets: 'Methane (CH4), Natural Gas, Coal Mine Fire-Damp',
+    work: 'Engineered specifically for coal mines and gas pipelines. Detects explosive methane gas before it reaches the Lower Explosive Limit (LEL 5%), alerting rescue workers to immediate deflagration risks.',
+    spec: 'ANALOG ADC / SENSITIVITY: 300 - 10000 PPM CH4'
   },
   {
     id: 1,
@@ -30,7 +30,7 @@ const SENSOR_MODULES = [
   {
     id: 2,
     code: 'MQ-135',
-    name: 'Hazardous Air Quality & Benzene',
+    name: 'Hazardous Air Quality & Ammonia',
     image: sensorMq135Img,
     tech: 'Broadband Volatile Gas Sensing Core',
     targets: 'Ammonia (NH3), NOx, Alcohol, Benzene, Volatile Smoke',
@@ -39,6 +39,16 @@ const SENSOR_MODULES = [
   },
   {
     id: 3,
+    code: 'BMP-280',
+    name: 'Barometric Pressure & Structural Altitude',
+    image: sensorDht22Img,
+    tech: 'Piezoresistive Micro-Electro-Mechanical (MEMS)',
+    targets: 'Atmospheric Barometric Pressure (hPa) & Sub-Meter Altitude',
+    work: 'Measures barometric pressure (300 to 1100 hPa) with ±0.12 hPa relative accuracy. Enables autonomous floor-level estimation in multi-story collapsed buildings and vertical mine shaft depth monitoring.',
+    spec: 'FAST I2C / SPI BUS / ±1 METER ALTITUDE ACCURACY'
+  },
+  {
+    id: 4,
     code: 'DHT-22',
     name: 'Digital Temperature & Relative Humidity',
     image: sensorDht22Img,
@@ -406,6 +416,103 @@ export default function SenseSection({ telemetry }) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* ========================================================= */}
+        {/* INTERACTIVE BMP280 STRUCTURAL ELEVATION SIMULATOR         */}
+        {/* ========================================================= */}
+        <div className="reveal-3d" style={{
+          marginTop: 'var(--space-10)',
+          background: 'linear-gradient(145deg, rgba(16, 20, 26, 0.95), rgba(7, 9, 12, 0.98))',
+          border: '1px solid rgba(0, 217, 255, 0.25)',
+          borderRadius: '24px',
+          padding: 'clamp(16px, 3vw, 24px)'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: '#00e5ff', letterSpacing: '0.1em' }}>
+                BMP280 MEMS BAROMETRIC CORE // I2C BUS
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.2rem', fontWeight: 700, margin: '2px 0 0 0', color: '#fff' }}>
+                Structural Altitude & Mine Shaft Gas Dispersion Simulator
+              </h3>
+            </div>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#39e58c', background: 'rgba(57, 229, 140, 0.1)', padding: '4px 10px', borderRadius: '6px', border: '1px solid #39e58c' }}>
+              REAL-TIME SUB-METER CALCULATION
+            </span>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+            gap: '20px',
+            alignItems: 'center'
+          }}>
+            {/* Slider Control */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.8125rem', fontFamily: 'var(--font-mono)' }}>
+                <span style={{ color: 'rgba(255,255,255,0.7)' }}>PROBE DEPTH / ELEVATION:</span>
+                <span style={{ color: '#00e5ff', fontWeight: 'bold' }}>{telemetry.altitude || 12} METERS</span>
+              </div>
+              <input
+                type="range"
+                min="-20"
+                max="40"
+                defaultValue="12"
+                id="elevationSlider"
+                style={{
+                  width: '100%',
+                  accentColor: '#00e5ff',
+                  cursor: 'pointer'
+                }}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value);
+                  const pEl = document.getElementById('dispPressure');
+                  const mEl = document.getElementById('dispMethane');
+                  const cEl = document.getElementById('dispStatus');
+                  if (pEl) pEl.innerText = (1013.25 - (val * 0.12)).toFixed(2) + ' hPa';
+                  if (mEl) mEl.innerText = Math.max(80, Math.round(180 + (val * 12))) + ' PPM';
+                  if (cEl) {
+                    if (val > 25) {
+                      cEl.innerText = '⚠ WARNING: HIGH CEILING METHANE ACCUMULATION';
+                      cEl.style.color = '#ff9500';
+                    } else if (val < -10) {
+                      cEl.innerText = '⚠ DEEP SHAFT CO POOLING DETECTED';
+                      cEl.style.color = '#ff4444';
+                    } else {
+                      cEl.innerText = '● NOMINAL VENTILATION AIRFLOW';
+                      cEl.style.color = '#39e58c';
+                    }
+                  }
+                }}
+              />
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.625rem', color: 'rgba(255,255,255,0.4)', marginTop: '4px', fontFamily: 'var(--font-mono)' }}>
+                <span>-20m (Underground Shaft)</span>
+                <span>0m (Ground Zero)</span>
+                <span>+40m (Upper Conduit)</span>
+              </div>
+            </div>
+
+            {/* Real-time Computed Values */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>BMP280 PRESSURE</div>
+                <div id="dispPressure" style={{ fontFamily: 'var(--font-mono)', fontSize: '1.125rem', fontWeight: 'bold', color: '#00e5ff', marginTop: '2px' }}>
+                  1011.81 hPa
+                </div>
+              </div>
+              <div style={{ background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>CH4 (MQ-4 SENSOR)</div>
+                <div id="dispMethane" style={{ fontFamily: 'var(--font-mono)', fontSize: '1.125rem', fontWeight: 'bold', color: '#ff9500', marginTop: '2px' }}>
+                  324 PPM
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="dispStatus" style={{ marginTop: '14px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#39e58c', textAlign: 'center' }}>
+            ● NOMINAL VENTILATION AIRFLOW
           </div>
         </div>
       </div>

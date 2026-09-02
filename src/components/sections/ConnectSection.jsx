@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layers, Wifi, Network } from 'lucide-react';
 import SystemTopologyDiagram from '../ui/SystemTopologyDiagram';
+import CyberOSSimulator from '../ui/CyberOSSimulator';
 
 export default function ConnectSection() {
   return (
@@ -28,20 +29,25 @@ export default function ConnectSection() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="chapter-number reveal-3d">06 // DISTRIBUTED SYSTEM TOPOLOGY (CONNECT)</div>
+        <div className="chapter-number reveal-3d">06 // DISTRIBUTED 6-NODE TOPOLOGY & CYBER OS (CONNECT)</div>
 
-        <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-12)' }}>
+        <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-10)' }}>
           <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-            Decoupled Architecture: High-Level Compute & Hard Real-Time Control
+            Dual-Layer Decoupled Architecture: 100Hz ESP-NOW & Autonomous Telemetry
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-            CyberRover X4 eliminates processing bottlenecks by isolating high-compute machine learning tasks on a Laptop host while delegating microsecond-critical motor loops and sensor ADCs to dual dedicated ESP32 microcontrollers.
+            CyberRover X4.2 eliminates single-point failures by separating real-time driving from sensor telemetry. Layer 1 operates 100% offline via sub-millisecond ESP-NOW RF, ensuring deterministic emergency braking even under complete Wi-Fi blackout.
           </p>
         </div>
 
-        {/* Embedded Topology Diagram */}
-        <div className="reveal-3d">
+        {/* Embedded 6-Node Topology Diagram */}
+        <div className="reveal-3d" style={{ marginBottom: 'var(--space-12)' }}>
           <SystemTopologyDiagram />
+        </div>
+
+        {/* Embedded Flipper-Zero Style Cyber OS Handheld Remote Simulator */}
+        <div className="reveal-3d">
+          <CyberOSSimulator />
         </div>
       </div>
     </section>

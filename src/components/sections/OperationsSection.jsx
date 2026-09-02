@@ -28,6 +28,10 @@ const THEATERS = [
   }
 ];
 
+import fieldImg1 from '../../assets/real_rover_field_1.png';
+import fieldImg2 from '../../assets/real_rover_field_2.png';
+import fieldImg3 from '../../assets/real_rover_field_3.png';
+
 export default function OperationsSection() {
   return (
     <section id="operations" className="story-stage" style={{ background: 'linear-gradient(180deg, var(--bg-base) 0%, var(--bg-surface) 100%)', position: 'relative', overflow: 'hidden' }}>
@@ -54,7 +58,7 @@ export default function OperationsSection() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="chapter-number reveal-3d">07 // OPERATIONAL DEPLOYMENT THEATERS</div>
+        <div className="chapter-number reveal-3d">08 // OPERATIONAL DEPLOYMENT THEATERS</div>
 
         <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-12)' }}>
           <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
@@ -66,7 +70,7 @@ export default function OperationsSection() {
         </div>
 
         {/* 4 Theater Modules */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 'var(--space-6)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 'var(--space-6)', marginBottom: 'var(--space-12)' }}>
           {THEATERS.map((th, index) => (
             <div
               key={index}
@@ -106,6 +110,91 @@ export default function OperationsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ========================================================= */}
+        {/* REAL-WORLD FIELD PROTOTYPE & TERRAIN TRIALS               */}
+        {/* ========================================================= */}
+        <div className="reveal-3d" style={{
+          background: 'linear-gradient(145deg, rgba(16, 20, 26, 0.95), rgba(7, 9, 12, 0.98))',
+          border: '1px solid rgba(0, 217, 255, 0.25)',
+          borderRadius: '24px',
+          padding: 'clamp(20px, 3vw, 32px)'
+        }}>
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: '#00e5ff', letterSpacing: '0.12em' }}>
+              PHYSICAL TESTBENCH VALIDATION // FIELD RUNS
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.35rem', fontWeight: 700, margin: '4px 0 0 0', color: '#fff' }}>
+              Actual Hardware Prototype in Confined & Mine Tunnel Trials
+            </h3>
+            <p style={{ margin: '4px 0 0 0', fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.65)' }}>
+              Photographic documentation of the working physical vehicle under real wet concrete, loose rubble, and industrial tunnel conditions.
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+            gap: '16px'
+          }}>
+            {[
+              { img: fieldImg1, caption: 'TUNNEL APPROACH // 4WD TRACTION RUN', sub: 'Concrete slab traverse with high-angle optical phone recon' },
+              { img: fieldImg2, caption: 'INDUSTRIAL SHAFT RECONNAISSANCE', sub: 'Subterranean tunnel ingress with tri-sector sonar active' },
+              { img: fieldImg3, caption: 'WET SLUDGE & RUBBLE TESTING', sub: 'Traction grip test on muddy aggregate with pan-tilt head deployed' }
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                style={{
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(0, 217, 255, 0.2)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                  <img
+                    src={item.img}
+                    alt={item.caption}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      transition: 'transform 0.4s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    left: '8px',
+                    background: 'rgba(7, 9, 12, 0.75)',
+                    backdropFilter: 'blur(6px)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.625rem',
+                    color: '#00e5ff',
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    border: '1px solid rgba(0, 217, 255, 0.3)'
+                  }}>
+                    LIVE FIELD TEST #{idx + 1}
+                  </div>
+                </div>
+                <div style={{ padding: '12px 14px' }}>
+                  <div style={{ fontFamily: 'var(--font-heading)', fontSize: '0.875rem', fontWeight: 700, color: '#fff', marginBottom: '2px' }}>
+                    {item.caption}
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.3 }}>
+                    {item.sub}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

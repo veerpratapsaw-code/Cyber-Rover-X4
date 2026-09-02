@@ -9,14 +9,14 @@ const CHASSIS_MODULES = [
   {
     id: 0,
     num: '01',
-    title: '4WD High-Torque DC Traction',
-    subtitle: '4x Geared Motors // Dual L298N Drivers',
-    desc: 'Four independent geared DC motors driven by twin L298N dual H-bridge motor drivers, providing differential skid steering and rapid zero-radius turning in narrow industrial corridors.',
+    title: 'High-Current DC Traction & Slew Ramping',
+    subtitle: 'High-Torque Motors // Dual BTS7960 43A MOSFET Bridges',
+    desc: 'Dual high-current BTS7960 43A MOSFET H-bridges driven by ATmega328P hardware PWM ramping. Delivers heavy stall torque without voltage sags, gear stripping, or inductive brownouts during high-incline rubble climbs.',
     image: chassisTractionImg,
-    tag: '4WD HIGH-TORQUE DC TRACTION',
-    spec1: 'GROUND CLEARANCE: 45mm',
-    spec2: 'PAYLOAD CAPACITY: 3.5 KG',
-    badge: '4WD SKID STEER'
+    tag: 'DUAL BTS7960 43A MOSFET BRIDGES',
+    spec1: 'CURRENT: 43A CONTINUOUS RATING',
+    spec2: 'SLEW RAMPING: 20ms ACCEL CURVE',
+    badge: 'BTS7960 43A POWER'
   },
   {
     id: 1,
@@ -33,14 +33,14 @@ const CHASSIS_MODULES = [
   {
     id: 2,
     num: '03',
-    title: 'Quad Microcontroller Compute Array',
-    subtitle: 'ESP32-S3 + ESP32-CAM + Arduino Uno + Nano',
-    desc: 'Decoupled distributed processing: ESP32-S3 and ESP32-CAM manage Wi-Fi and video streaming, while dual Arduino MCUs execute microsecond motor timing and analog sensor telemetry.',
+    title: '6-Node Heterogeneous Distributed Network',
+    subtitle: 'ESP32 Remote + ESP32-S3 + Uno + Nano + CAM + Laptop',
+    desc: 'Total task decoupling: ESP-NOW peer-to-peer radio isolates 100Hz real-time drive safety, while an Arduino Uno executes deterministic PWM motor loops and an Arduino Nano acquires multi-channel gas telemetry.',
     image: chassisMcuImg,
-    tag: 'QUAD MCU COMPUTE ARRAY',
-    spec1: 'DUAL ESP32: 240MHz CORE',
-    spec2: 'DUAL ARDUINO: 16MHz PWM/ADC',
-    badge: 'DISTRIBUTED ARCHITECTURE'
+    tag: '6-NODE DISTRIBUTED NETWORK',
+    spec1: 'CORE 1 RF LOOP: 100Hz HARD REAL-TIME',
+    spec2: 'FAILSAFE WATCHDOG: 500ms EMERGENCY STOP',
+    badge: '6-NODE ARCHITECTURE'
   },
   {
     id: 3,

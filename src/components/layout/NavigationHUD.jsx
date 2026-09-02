@@ -4,10 +4,12 @@ import { smoothScrollTo } from '../../hooks/useSmoothScroll';
 
 const NAV_LINKS = [
   { id: 'hero', label: 'PLATFORM', num: '01' },
-  { id: 'mission', label: 'MISSION', num: '02' },
-  { id: 'chassis', label: 'CHASSIS', num: '03' },
-  { id: 'vision', label: 'VISION', num: '04' },
-  { id: 'specs', label: 'SPECS', num: '05' }
+  { id: 'chassis', label: 'CHASSIS', num: '02' },
+  { id: 'mobility', label: 'MOBILITY & AUDIO', num: '03' },
+  { id: 'sensors', label: 'HAZMAT', num: '04' },
+  { id: 'system', label: 'TOPOLOGY & OS', num: '05' },
+  { id: 'x5-future', label: 'X5 FUTURE', num: '06' },
+  { id: 'specs', label: 'SPECS', num: '07' }
 ];
 
 export default function NavigationHUD({ activeSection, scrollPercent, batteryVoltage = 11.85 }) {

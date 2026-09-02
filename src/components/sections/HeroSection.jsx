@@ -132,7 +132,8 @@ export default function HeroSection({ telemetry }) {
             alignItems: 'center',
             justifyContent: 'center',
             perspective: '1200px',
-            maxWidth: '780px',
+            maxWidth: '860px',
+            width: '100%',
             margin: '0 auto var(--space-6)'
           }}
         >
@@ -153,18 +154,20 @@ export default function HeroSection({ telemetry }) {
               position: 'relative',
               borderRadius: 'var(--radius-md)',
               overflow: 'hidden',
+              aspectRatio: '16 / 9',
               border: '1px solid rgba(0, 217, 255, 0.35)',
               boxShadow: '0 30px 80px rgba(0, 0, 0, 0.95), 0 0 60px rgba(0, 217, 255, 0.2)',
               background: '#040608'
             }}>
               <img
                 src={rover3DHeroImg}
-                alt="CYBERROVER X4 High-Res 3D Autonomous Inspection Platform"
+                alt="CYBERROVER X4 Real Prototype - Studio Showcase"
                 style={{
                   width: '100%',
-                  height: 'auto',
+                  height: '100%',
+                  objectFit: 'cover',
                   display: 'block',
-                  filter: 'contrast(1.06) brightness(1.02)'
+                  filter: 'contrast(1.04) brightness(1.02)'
                 }}
               />
 
