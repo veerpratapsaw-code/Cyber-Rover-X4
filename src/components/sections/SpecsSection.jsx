@@ -49,7 +49,7 @@ const SPEC_TABS = [
       { param: 'Layer 1: Drive RF Bus', val: 'ESP-NOW 2.4GHz Peer-to-Peer Radio (Dedicated Control Link)' },
       { param: 'Layer 2: Telemetry Wi-Fi', val: '802.11 b/g/n Telemetry Network (REST JSON + Video Stream)' },
       { param: 'Control Failsafe Response', val: '500ms Hardware Watchdog Auto-Stop on Signal Loss' },
-      { param: 'Primary Battery Chemistry', val: '3S Li-Ion Battery Pack (11.85V Nominal)' },
+      { param: 'Primary Battery Architecture', val: '18650 3S1P Li-Ion Battery Pack with Integrated BMS (11.1V Nominal / 12.6V Peak, XT30 Connector)' },
       { param: 'Power Rail Isolation', val: 'Dual Step-Down Buck Converters (Isolated Logic Rails)' },
       { param: 'Platform Certification Status', val: 'Student-Built Prototype (Not Certified for Regulated Zones)' }
     ]

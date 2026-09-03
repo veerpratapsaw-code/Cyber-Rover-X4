@@ -70,7 +70,7 @@ const LIMITATION_ITEMS = [
     icon: Zap,
     category: 'CHASSIS MOBILITY',
     title: 'Terrain, Ground Clearance & Battery Capacity',
-    reality: 'Driven by 4WD geared DC motors with differential skid steering powered by an 11.85V 3S Li-ion battery pack.',
+    reality: 'Driven by 4WD geared DC motors with differential skid steering powered by a compact 18650 3S1P Li-ion battery pack with integrated BMS (11.1V–12.6V) via an XT30 connector.',
     boundary: 'Mobility is physically constrained by a 45mm ground clearance, wheel tread friction on wet or loose gravel, DC motor thermal dissipation under high torque, and battery discharge curves.',
     color: '#00e5ff',
     tag: '45mm CLEARANCE'

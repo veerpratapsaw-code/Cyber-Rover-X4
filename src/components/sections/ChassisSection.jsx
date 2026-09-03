@@ -1,31 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Cpu, Zap, Eye, Compass, Layers, CheckCircle2, ArrowRight } from 'lucide-react';
-import chassisTractionImg from '../../assets/chassis_traction.jpg';
-import chassisPhoneImg from '../../assets/real_rover_field_2.png';
-import chassisMcuImg from '../../assets/chassis_mcu.jpg';
-import chassisBatteryImg from '../../assets/chassis_battery.jpg';
+import chassisTractionImg from '../../assets/real_chassis_4wd.jpg';
+import chassisPhoneImg from '../../assets/real_rover_studio.png';
+import chassisMcuImg from '../../assets/real_mcu_uno_esp32.jpg';
+import chassisBatteryImg from '../../assets/real_battery_3s1p.jpg';
 
 const CHASSIS_MODULES = [
   {
     id: 0,
     num: '01',
-    title: 'High-Current DC Traction & Acceleration Ramping',
-    subtitle: 'High-Torque DC Motors // Dual BTS7960 Motor Drivers',
-    desc: 'Dual high-current BTS7960 MOSFET H-bridge modules driven by ATmega328P hardware PWM control. Delivers ample current headroom for 4WD geared DC traction motors with smooth acceleration ramping and differential skid steering.',
+    title: '4WD Physical Chassis & Dual BTS7960 Drivers',
+    subtitle: '4 Geared DC Motors // Dual BTS7960 High-Current Drivers',
+    desc: 'Physical 4WD chassis featuring high-traction ribbed wheels and dual BTS7960 MOSFET H-bridge motor drivers. Driven by ATmega328P hardware PWM for smooth acceleration ramping and differential skid steering with robust current headroom without voltage drop.',
     image: chassisTractionImg,
-    tag: 'DUAL BTS7960 HIGH-CURRENT DRIVERS',
-    spec1: 'DRIVER: DUAL BTS7960 H-BRIDGES',
-    spec2: 'SLEW RAMPING: PWM ACCEL CURVE',
-    badge: 'BTS7960 MOTOR DRIVERS'
+    tag: 'REAL 4WD PROTOTYPE CHASSIS & DUAL BTS7960',
+    spec1: 'DRIVERS: DUAL BTS7960 HIGH-CURRENT H-BRIDGES',
+    spec2: 'DRIVE: 4x GEARED DC MOTORS + SKID STEERING',
+    badge: 'REAL CAR CHASSIS'
   },
   {
     id: 1,
     num: '02',
-    title: 'Chassis-Mounted Smartphone Camera Mount',
-    subtitle: 'Mobile Camera Optics // Live Operator Visual Feed',
-    desc: 'Rigid shock-damped smartphone dock secured to the rover chassis. Employs mobile camera optics and electronic stabilization for clear operator visual observation without servo jitter or mechanical turret points of failure.',
+    title: 'Chassis-Mounted Smartphone Camera Dock',
+    subtitle: 'Mounted Smartphone Optics // Real-Time Operator FPV',
+    desc: 'Rigid front-facing smartphone dock mounted securely to the rover upper deck. Employs mobile optical camera hardware for real-time video streaming to the operator station, eliminating servo jitter and moving turret mechanical failure points.',
     image: chassisPhoneImg,
-    tag: 'SMARTPHONE OPTICAL DOCK',
+    tag: 'REAL SMARTPHONE OPTICAL DOCK',
     spec1: 'VIDEO FEED: REAL-TIME OPERATOR FPV',
     spec2: 'STABILIZATION: HARDWARE SHOCK DAMPING',
     badge: 'PHONE CAMERA'
@@ -33,26 +33,26 @@ const CHASSIS_MODULES = [
   {
     id: 2,
     num: '03',
-    title: '6-Node Heterogeneous Distributed Architecture',
-    subtitle: 'ESP32 Remote + ESP32-S3 + Uno + Nano + CAM + Laptop',
-    desc: 'Decoupled system architecture: dedicated ESP-NOW peer-to-peer link isolates real-time driving control from Wi-Fi telemetry. Arduino Uno executes motor loops while Arduino Nano samples environmental sensors, preventing telemetry issues from interrupting drive control.',
+    title: 'Decoupled Dual-MCU Architecture (ESP32-S3 + Uno)',
+    subtitle: 'ESP32-S3 Master + Arduino Uno Motor Controller (Separate MCUs)',
+    desc: 'Completely separated microcontroller roles: the ESP32-S3 acts as the Rover Master handling 2.4GHz ESP-NOW wireless reception, passing movement commands via dedicated UART serial to the Arduino Uno. The Uno independently executes motor PWM routines and reads 3x ultrasonic distance sensors, ensuring telemetry never blocks real-time drive safety.',
     image: chassisMcuImg,
-    tag: '6-NODE DECOUPLED ARCHITECTURE',
-    spec1: 'CONTROL LINK: DEDICATED ESP-NOW 2.4GHz',
-    spec2: 'FAILSAFE: 500ms WATCHDOG TIMEOUT STOP',
-    badge: '6-NODE ARCHITECTURE'
+    tag: 'SEPARATED ESP32-S3 & ARDUINO UNO',
+    spec1: 'ROVER MASTER: ESP32-S3 (ESP-NOW 2.4GHz)',
+    spec2: 'MOTION MCU: ARDUINO UNO (PWM + SONAR)',
+    badge: 'SEPARATE DUAL MCUs'
   },
   {
     id: 3,
     num: '04',
-    title: 'High-Density 3S Li-Ion Power Architecture',
-    subtitle: '11.85V Nominal // Buck Step-Down Regulators',
-    desc: 'Dedicated 3S Li-Ion battery pack delivers stable high-amperage current for DC traction surges, paired with DC-DC buck regulators providing isolated 5V and 3.3V power rails for microcontrollers and sensors.',
+    title: '18650 3S1P Li-Ion Battery Pack with BMS',
+    subtitle: '11.1V Nominal (12.6V Peak) // Integrated BMS // XT30 Connector',
+    desc: 'Compact 3S1P pack constructed with three 18650 high-discharge lithium-ion cells in series. Equipped with an integrated 3S BMS (Battery Management System) for over-charge, over-discharge, and short-circuit protection, connected via an authentic yellow XT30 high-current connector. Dedicated DC-DC buck step-down regulators deliver isolated 5V and 3.3V rails for microcontrollers and sensors.',
     image: chassisBatteryImg,
-    tag: '3S Li-ION POWER MODULE',
-    spec1: 'VOLTAGE BUS: 11.85V NOMINAL (3S)',
-    spec2: 'REGULATION: DC-DC BUCK STEP-DOWN',
-    badge: 'ISOLATED POWER BUS'
+    tag: '18650 3S1P PACK · BMS · XT30',
+    spec1: 'CELLS: 3S1P 18650 LI-ION (11.1V - 12.6V)',
+    spec2: 'SAFETY & PLUG: 3S BMS + XT30 CONNECTOR',
+    badge: '3S1P Li-ION + BMS'
   }
 ];
 
@@ -127,7 +127,7 @@ export default function ChassisSection() {
             Engineered for Stability & Modular Precision
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-            CyberRover X4 is built on an industrial carbon-reinforced chassis designed for all-terrain stability, minimal ground vibration, and electro-magnetic isolation.
+            CyberRover X4.2 is constructed on a dual-tier modular chassis with all-terrain ribbed wheels, dual BTS7960 high-current motor drivers, separate microcontroller layers, and an integrated 18650 3S1P Li-ion battery pack with BMS.
           </p>
         </div>
 
