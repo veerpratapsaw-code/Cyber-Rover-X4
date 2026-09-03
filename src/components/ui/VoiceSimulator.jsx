@@ -8,7 +8,7 @@ const PRESET_COMMANDS = [
     json: {
       action: "NAVIGATE_INSPECT",
       target: "PIPELINE_FORWARD",
-      sensors: ["MQ7_CO", "MQ2_SMOKE"],
+      sensors: ["MQ7_CO", "MQ4_METHANE"],
       speed_pwm: 180,
       report_voice: true
     },

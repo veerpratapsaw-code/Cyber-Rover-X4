@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export function useSensorTelemetry() {
   const [telemetry, setTelemetry] = useState({
-    mq2Smoke: 42, // ppm
+    mq4Methane: 42, // ppm (MQ-4 Methane CH4)
     mq7CO: 12, // ppm
     mq135AirQuality: 185, // ppm
     temperature: 24.6, // °C
@@ -25,9 +25,11 @@ export function useSensorTelemetry() {
         // Micro-jitter to simulate live hardware sensor ADC noise
         const jitter = (range) => (Math.random() - 0.5) * range;
 
+        const nextMethane = Math.max(20, Math.min(300, Math.round(prev.mq4Methane + jitter(4))));
+
         return {
           ...prev,
-          mq2Smoke: Math.max(20, Math.min(300, Math.round(prev.mq2Smoke + jitter(4)))),
+          mq4Methane: nextMethane,
           mq7CO: Math.max(5, Math.min(80, Math.round(prev.mq7CO + jitter(1.5)))),
           mq135AirQuality: Math.max(120, Math.min(450, Math.round(prev.mq135AirQuality + jitter(6)))),
           temperature: Number((prev.temperature + jitter(0.2)).toFixed(1)),

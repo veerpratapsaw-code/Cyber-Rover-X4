@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ShieldAlert, Thermometer, Wind, Zap, ChevronLeft, ChevronRight, CheckCircle2, ArrowRight } from 'lucide-react';
 import SensorBar from '../ui/SensorBar';
-import sensorMq2Img from '../../assets/sensor_mq2.jpg';
+import sensorMq4Img from '../../assets/sensor_mq4.jpg';
 import sensorMq7Img from '../../assets/sensor_mq7.jpg';
 import sensorMq135Img from '../../assets/sensor_mq135.jpg';
 import sensorDht22Img from '../../assets/sensor_dht22.jpg';
@@ -11,7 +11,7 @@ const SENSOR_MODULES = [
     id: 0,
     code: 'MQ-4',
     name: 'Methane (CH4) & Mine Deflagration Sensor',
-    image: sensorMq2Img,
+    image: sensorMq4Img,
     tech: 'SnO2 Micro-Sensor with High CH4 Selectivity',
     targets: 'Methane (CH4), Natural Gas, Coal Mine Fire-Damp',
     work: 'Engineered specifically for coal mines and gas pipelines. Detects explosive methane gas before it reaches the Lower Explosive Limit (LEL 5%), alerting rescue workers to immediate deflagration risks.',
@@ -300,7 +300,7 @@ export default function SenseSection({ telemetry }) {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {/* MQ-2 Smoke Card */}
+              {/* MQ-4 Methane Card */}
               <div
                 onClick={() => setActiveSensor(0)}
                 style={{
@@ -313,16 +313,16 @@ export default function SenseSection({ telemetry }) {
                 }}
               >
                 <SensorBar
-                  label="Combustible Hydrocarbons & Smoke"
-                  code="MQ-2"
-                  value={telemetry.mq2Smoke}
+                  label="Methane (CH4) & Mine Deflagration"
+                  code="MQ-4"
+                  value={telemetry.mq4Methane}
                   unit="ppm"
                   min={0}
                   max={500}
                   warnThreshold={180}
                   dangerThreshold={350}
-                  description="SnO2 semiconductor sensing layer for early combustion warning."
-                  targetGases="LPG, Smoke, Propane, CH4"
+                  description="SnO2 semiconductor sensing layer with high selectivity for CH4 and natural gas."
+                  targetGases="Methane (CH4), Natural Gas, CNG, Fire-damp"
                 />
               </div>
 

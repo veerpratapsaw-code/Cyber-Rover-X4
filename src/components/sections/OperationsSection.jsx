@@ -6,7 +6,7 @@ const THEATERS = [
     icon: Factory,
     title: 'Petrochemical & Refineries',
     tag: 'HAZARDOUS ATMOSPHERES',
-    desc: 'Autonomous perimeter patrols around volatile cracking units and high-pressure gas manifolds. Rapid detection of combustible hydrocarbons (MQ-2) and odorless carbon monoxide (MQ-7) prevents catastrophic industrial deflagration.'
+    desc: 'Autonomous perimeter patrols around volatile cracking units and high-pressure gas manifolds. Rapid detection of combustible methane and natural gas (MQ-4) and odorless carbon monoxide (MQ-7) prevents catastrophic industrial deflagration.'
   },
   {
     icon: HardHat,
