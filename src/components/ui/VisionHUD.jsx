@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
-import { Camera, Crosshair, Eye, Scan, Sliders, Maximize2, ShieldAlert } from 'lucide-react';
+import { Camera, Eye, Zap, ZoomIn, ZoomOut, Sun, ShieldCheck, Sparkles, RefreshCw, Smartphone } from 'lucide-react';
 
 export default function VisionHUD({ turretImage }) {
-  const [cvMode, setCvMode] = useState('face_tracking'); // 'face_tracking' | 'motion' | 'raw'
-  const [pan, setPan] = useState(0);
-  const [tilt, setTilt] = useState(0);
-  const [targetLocked, setTargetLocked] = useState(true);
+  const [streamMode, setStreamMode] = useState('fpv_1080p'); // 'fpv_1080p' | 'torch' | 'telephoto'
+  const [zoomLevel, setZoomLevel] = useState(1.0); // 1.0x to 5.0x
+  const [torchActive, setTorchActive] = useState(false);
+  const [exposure, setExposure] = useState(0); // -2 to +2 EV
+  const [snapFlash, setSnapFlash] = useState(false);
+
+  const handleCapture = () => {
+    setSnapFlash(true);
+    setTimeout(() => setSnapFlash(false), 300);
+  };
 
   return (
     <div className="tech-card reticle-box" style={{ background: 'var(--bg-surface)', padding: 'var(--space-6)' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-4)', flexWrap: 'wrap', gap: '12px' }}>
         <div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-cyan)', letterSpacing: '0.1em' }}>
-            OPTICAL FEED // ESP32-CAM (640x480 MJPEG)
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-cyan)', letterSpacing: '0.1em' }}>
+            <Smartphone size={14} />
+            <span>PRIMARY OPTICAL FEED // SMARTPHONE 1080P 60FPS CAMERA</span>
           </div>
           <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-            Articulated Pan/Tilt & OpenCV Edge Vision
+            Chassis-Mounted Phone Camera & Tactical FPV Feed
           </div>
         </div>
 
-        {/* Mode Selector Tabs */}
+        {/* Stream Profile Selector */}
         <div style={{ display: 'flex', gap: '6px', background: 'var(--bg-elevated)', padding: '4px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
           <button
-            onClick={() => setCvMode('face_tracking')}
+            onClick={() => { setStreamMode('fpv_1080p'); setZoomLevel(1.0); }}
             style={{
               padding: '4px 10px',
               fontSize: '0.75rem',
@@ -31,15 +38,18 @@ export default function VisionHUD({ turretImage }) {
               border: 'none',
               borderRadius: 'var(--radius-xs)',
               cursor: 'pointer',
-              background: cvMode === 'face_tracking' ? 'var(--accent-cyan)' : 'transparent',
-              color: cvMode === 'face_tracking' ? 'var(--text-inverse)' : 'var(--text-secondary)',
+              background: streamMode === 'fpv_1080p' ? 'var(--accent-cyan)' : 'transparent',
+              color: streamMode === 'fpv_1080p' ? 'var(--text-inverse)' : 'var(--text-secondary)',
               fontWeight: 600
             }}
           >
-            FACE TRACKING
+            1080P FPV
           </button>
           <button
-            onClick={() => setCvMode('motion')}
+            onClick={() => {
+              setStreamMode('torch');
+              setTorchActive(!torchActive);
+            }}
             style={{
               padding: '4px 10px',
               fontSize: '0.75rem',
@@ -47,15 +57,15 @@ export default function VisionHUD({ turretImage }) {
               border: 'none',
               borderRadius: 'var(--radius-xs)',
               cursor: 'pointer',
-              background: cvMode === 'motion' ? 'var(--accent-cyan)' : 'transparent',
-              color: cvMode === 'motion' ? 'var(--text-inverse)' : 'var(--text-secondary)',
+              background: streamMode === 'torch' || torchActive ? 'var(--accent-cyan)' : 'transparent',
+              color: streamMode === 'torch' || torchActive ? 'var(--text-inverse)' : 'var(--text-secondary)',
               fontWeight: 600
             }}
           >
-            MOTION DETECT
+            TORCH {torchActive ? 'ON' : 'OFF'}
           </button>
           <button
-            onClick={() => setCvMode('raw')}
+            onClick={() => { setStreamMode('telephoto'); setZoomLevel(2.5); }}
             style={{
               padding: '4px 10px',
               fontSize: '0.75rem',
@@ -63,12 +73,12 @@ export default function VisionHUD({ turretImage }) {
               border: 'none',
               borderRadius: 'var(--radius-xs)',
               cursor: 'pointer',
-              background: cvMode === 'raw' ? 'var(--accent-cyan)' : 'transparent',
-              color: cvMode === 'raw' ? 'var(--text-inverse)' : 'var(--text-secondary)',
+              background: streamMode === 'telephoto' ? 'var(--accent-cyan)' : 'transparent',
+              color: streamMode === 'telephoto' ? 'var(--text-inverse)' : 'var(--text-secondary)',
               fontWeight: 600
             }}
           >
-            RAW FEED
+            2.5X ZOOM
           </button>
         </div>
       </div>
@@ -77,7 +87,7 @@ export default function VisionHUD({ turretImage }) {
       <div style={{
         position: 'relative',
         width: '100%',
-        height: 'clamp(220px, 38vh, 340px)',
+        height: 'clamp(240px, 40vh, 360px)',
         background: '#040608',
         borderRadius: 'var(--radius-md)',
         overflow: 'hidden',
@@ -86,170 +96,190 @@ export default function VisionHUD({ turretImage }) {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        {/* Background Stream Image with Pan/Tilt Translation */}
-        <div style={{
-          position: 'absolute',
-          inset: '-20px',
-          backgroundImage: `url(${turretImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: cvMode === 'raw' ? 'brightness(0.9) contrast(1.1)' : 'brightness(0.65) contrast(1.2) hue-rotate(180deg)',
-          transform: `translate(${pan * 0.8}px, ${tilt * 0.8}px) scale(1.08)`,
-          transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease'
-        }} />
-
-        {/* Scanlines Effect */}
+        {/* Background Stream Image with Zoom & Exposure & Torch */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 50%)',
-          backgroundSize: '100% 4px',
-          pointerEvents: 'none',
-          opacity: 0.6
+          backgroundImage: `url(${turretImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: `${torchActive ? 'brightness(1.25) contrast(1.15)' : 'brightness(0.95) contrast(1.08)'} brightness(${1 + exposure * 0.15})`,
+          transform: `scale(${zoomLevel})`,
+          transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease'
         }} />
+
+        {/* Torch Flashlight Radial Beam (when active) */}
+        {torchActive && (
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 230, 0.28) 0%, rgba(255, 255, 255, 0.08) 50%, transparent 80%)',
+            pointerEvents: 'none',
+            mixBlendMode: 'screen'
+          }} />
+        )}
+
+        {/* Shutter Flash Animation */}
+        {snapFlash && (
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: '#ffffff',
+            zIndex: 10,
+            animation: 'fadeOut 0.3s ease forwards'
+          }} />
+        )}
+
+        {/* Optical Rule-of-Thirds Grid */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateRows: '1fr 1fr 1fr',
+          opacity: 0.18
+        }}>
+          <div style={{ borderRight: '1px solid var(--accent-cyan)', borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderRight: '1px solid var(--accent-cyan)', borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderRight: '1px solid var(--accent-cyan)', borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderRight: '1px solid var(--accent-cyan)', borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderBottom: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderRight: '1px solid var(--accent-cyan)' }} />
+          <div style={{ borderRight: '1px solid var(--accent-cyan)' }} />
+          <div />
+        </div>
 
         {/* Tactical Viewfinder Overlay HUD */}
         <div style={{ position: 'absolute', inset: 'clamp(8px, 2vw, 16px)', pointerEvents: 'none', border: '1px solid rgba(0, 217, 255, 0.15)' }}>
           {/* Corner Brackets */}
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '12px', height: '12px', borderTop: '2px solid var(--accent-cyan)', borderLeft: '2px solid var(--accent-cyan)' }} />
-          <div style={{ position: 'absolute', top: 0, right: 0, width: '12px', height: '12px', borderTop: '2px solid var(--accent-cyan)', borderRight: '2px solid var(--accent-cyan)' }} />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '12px', height: '12px', borderBottom: '2px solid var(--accent-cyan)', borderLeft: '2px solid var(--accent-cyan)' }} />
-          <div style={{ position: 'absolute', bottom: 0, right: 0, width: '12px', height: '12px', borderBottom: '2px solid var(--accent-cyan)', borderRight: '2px solid var(--accent-cyan)' }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '14px', height: '14px', borderTop: '2px solid var(--accent-cyan)', borderLeft: '2px solid var(--accent-cyan)' }} />
+          <div style={{ position: 'absolute', top: 0, right: 0, width: '14px', height: '14px', borderTop: '2px solid var(--accent-cyan)', borderRight: '2px solid var(--accent-cyan)' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '14px', height: '14px', borderBottom: '2px solid var(--accent-cyan)', borderLeft: '2px solid var(--accent-cyan)' }} />
+          <div style={{ position: 'absolute', bottom: 0, right: 0, width: '14px', height: '14px', borderBottom: '2px solid var(--accent-cyan)', borderRight: '2px solid var(--accent-cyan)' }} />
 
-          {/* Central Crosshair */}
+          {/* Central Precision Crosshair */}
           <div style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '28px',
-            height: '28px',
-            opacity: 0.7
+            width: '32px',
+            height: '32px',
+            opacity: 0.8
           }}>
             <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', background: 'var(--accent-cyan)' }} />
             <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '1px', background: 'var(--accent-cyan)' }} />
-            <div style={{ position: 'absolute', inset: '6px', border: '1px solid var(--accent-cyan)', borderRadius: '50%' }} />
+            <div style={{ position: 'absolute', inset: '8px', border: '1px solid var(--accent-cyan)', borderRadius: '50%' }} />
           </div>
 
           {/* Top Status Bar */}
-          <div style={{ position: 'absolute', top: '6px', left: '8px', right: '8px', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5625rem, 1.6vw, 0.6875rem)' }}>
-            <span style={{ color: 'var(--status-hazard)', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--status-hazard)' }} />
-              REC [ESP32-CAM]
+          <div style={{ position: 'absolute', top: '8px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5625rem, 1.6vw, 0.6875rem)' }}>
+            <span style={{ color: 'var(--status-hazard)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span className="animate-blink" style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--status-hazard)' }} />
+              LIVE [PHONE CAMERA // 1080P 60FPS]
             </span>
-            <span style={{ color: 'var(--accent-cyan)' }}>PAN {pan > 0 ? `+${pan}` : pan}° / TILT {tilt > 0 ? `+${tilt}` : tilt}°</span>
+            <span style={{ color: 'var(--accent-cyan)', display: 'flex', gap: '8px' }}>
+              <span>ZOOM {zoomLevel.toFixed(1)}x</span>
+              <span>•</span>
+              <span>FOV 120° WIDE</span>
+              <span>•</span>
+              <span style={{ color: 'var(--status-nominal)' }}>EIS ACTIVE</span>
+            </span>
           </div>
 
-          {/* OpenCV Target Bounding Box (Only in CV Modes) */}
-          {cvMode === 'face_tracking' && (
-            <div style={{
-              position: 'absolute',
-              top: '28%',
-              left: '38%',
-              width: 'clamp(90px, 25%, 120px)',
-              height: 'clamp(100px, 28%, 130px)',
-              border: '2px solid var(--accent-cyan)',
-              boxShadow: '0 0 16px rgba(0, 217, 255, 0.4), inset 0 0 16px rgba(0, 217, 255, 0.1)',
-              borderRadius: 'var(--radius-xs)',
-              transform: `translate(${pan * -0.5}px, ${tilt * -0.5}px)`,
-              transition: 'transform 0.3s ease'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '-18px',
-                left: 0,
-                background: 'var(--accent-cyan)',
-                color: 'var(--text-inverse)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.5rem, 1.4vw, 0.625rem)',
-                fontWeight: 700,
-                padding: '1px 4px',
-                whiteSpace: 'nowrap'
-              }}>
-                TARGET: HUMAN // 98.4%
-              </div>
-            </div>
-          )}
-
-          {cvMode === 'motion' && (
-            <div style={{
-              position: 'absolute',
-              top: '25%',
-              left: '20%',
-              width: 'clamp(140px, 45%, 240px)',
-              height: 'clamp(100px, 35%, 180px)',
-              border: '1px dashed var(--status-warning)',
-              borderRadius: 'var(--radius-xs)'
-            }}>
-              <div style={{
-                position: 'absolute',
-                top: '-18px',
-                left: 0,
-                background: 'var(--status-warning)',
-                color: 'var(--text-inverse)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.5rem, 1.4vw, 0.625rem)',
-                fontWeight: 700,
-                padding: '1px 4px'
-              }}>
-                MOTION // 45%
-              </div>
-            </div>
-          )}
-
           {/* Bottom Telemetry Bar */}
-          <div style={{ position: 'absolute', bottom: '6px', left: '8px', right: '8px', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5rem, 1.4vw, 0.625rem)', color: 'var(--text-muted)' }}>
-            <span>OPENCV 4.8</span>
-            <span>20ms PID</span>
+          <div style={{ position: 'absolute', bottom: '8px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5rem, 1.4vw, 0.625rem)', color: 'var(--text-muted)' }}>
+            <span>RESOLUTION: 1920x1080 @ 60FPS</span>
+            <span>TRANSMISSION: RTSP / LOW-LATENCY WEBRTC (28ms)</span>
           </div>
         </div>
       </div>
 
-      {/* Interactive Gimbal Servo Joystick / Sliders */}
+      {/* Interactive Smartphone Camera Optical Controls */}
       <div style={{ marginTop: 'var(--space-4)', padding: 'var(--space-4)', background: 'var(--bg-elevated)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.6875rem, 1.8vw, 0.75rem)', color: 'var(--accent-cyan)' }}>
-            MANUAL GIMBAL ARTICULATION:
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.6875rem, 1.8vw, 0.75rem)', color: 'var(--accent-cyan)', fontWeight: 600 }}>
+            SMARTPHONE CAMERA OPTICAL CONTROLS:
           </span>
-          <button
-            onClick={() => { setPan(0); setTilt(0); }}
-            style={{
-              padding: '2px 8px',
-              background: 'transparent',
-              border: '1px solid var(--border-subtle)',
-              color: 'var(--text-secondary)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.6875rem',
-              borderRadius: 'var(--radius-xs)',
-              cursor: 'pointer'
-            }}
-          >
-            CENTER (0°, 0°)
-          </button>
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <button
+              onClick={() => setTorchActive(!torchActive)}
+              style={{
+                padding: '3px 10px',
+                background: torchActive ? 'rgba(0, 217, 255, 0.2)' : 'transparent',
+                border: `1px solid ${torchActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                color: torchActive ? 'var(--accent-cyan)' : 'var(--text-secondary)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6875rem',
+                borderRadius: 'var(--radius-xs)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              <Sun size={12} />
+              <span>{torchActive ? 'TORCH ON' : 'TORCH OFF'}</span>
+            </button>
+            <button
+              onClick={handleCapture}
+              style={{
+                padding: '3px 10px',
+                background: 'rgba(57, 229, 140, 0.15)',
+                border: '1px solid var(--status-nominal)',
+                color: 'var(--status-nominal)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.6875rem',
+                borderRadius: 'var(--radius-xs)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+            >
+              <Camera size={12} />
+              <span>CAPTURE STILL</span>
+            </button>
+          </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px' }}>
+        {/* Zoom & Exposure Range Sliders */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px' }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-              <span>Pan Axis</span>
-              <span style={{ color: 'var(--accent-cyan)' }}>{pan}°</span>
+              <span>Digital Telephoto Magnification</span>
+              <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{zoomLevel.toFixed(1)}x</span>
             </div>
             <input
-              type="range" min="-60" max="60" value={pan}
-              onChange={e => setPan(Number(e.target.value))}
+              type="range" min="1.0" max="5.0" step="0.1" value={zoomLevel}
+              onChange={e => setZoomLevel(parseFloat(e.target.value))}
               style={{ width: '100%', accentColor: 'var(--accent-cyan)' }}
             />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.625rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', marginTop: '2px' }}>
+              <span onClick={() => setZoomLevel(1.0)} style={{ cursor: 'pointer' }}>1.0x (Wide)</span>
+              <span onClick={() => setZoomLevel(2.0)} style={{ cursor: 'pointer' }}>2.0x</span>
+              <span onClick={() => setZoomLevel(3.5)} style={{ cursor: 'pointer' }}>3.5x</span>
+              <span onClick={() => setZoomLevel(5.0)} style={{ cursor: 'pointer' }}>5.0x (Max)</span>
+            </div>
           </div>
+
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem', fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)', marginBottom: '4px' }}>
-              <span>Tilt Axis</span>
-              <span style={{ color: 'var(--accent-cyan)' }}>{tilt}°</span>
+              <span>Optical Exposure Bias (EV)</span>
+              <span style={{ color: 'var(--accent-cyan)', fontWeight: 700 }}>{exposure > 0 ? `+${exposure}` : exposure} EV</span>
             </div>
             <input
-              type="range" min="-30" max="30" value={tilt}
-              onChange={e => setTilt(Number(e.target.value))}
+              type="range" min="-2" max="2" step="1" value={exposure}
+              onChange={e => setExposure(parseInt(e.target.value, 10))}
               style={{ width: '100%', accentColor: 'var(--accent-cyan)' }}
             />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.625rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', marginTop: '2px' }}>
+              <span onClick={() => setExposure(-2)} style={{ cursor: 'pointer' }}>-2 EV (Dark)</span>
+              <span onClick={() => setExposure(0)} style={{ cursor: 'pointer' }}>0 (Balanced)</span>
+              <span onClick={() => setExposure(2)} style={{ cursor: 'pointer' }}>+2 EV (High Gain)</span>
+            </div>
           </div>
         </div>
       </div>

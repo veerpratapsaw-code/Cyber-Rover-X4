@@ -221,7 +221,7 @@ export default function HeroSection({ telemetry }) {
                 }}
                 onClick={() => smoothScrollTo('vision')}
               >
-                ● 2-AXIS OPTICAL GIMBAL
+                ● HD SMARTPHONE CAMERA
               </div>
             </div>
 
@@ -277,8 +277,8 @@ export default function HeroSection({ telemetry }) {
           </div>
 
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>
-            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>GIMBAL AZIMUTH</div>
-            <div style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '1rem' }}>180° DUAL SG90</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>OPTICAL CAMERA</div>
+            <div style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '1rem' }}>HD PHONE FPV</div>
           </div>
 
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>

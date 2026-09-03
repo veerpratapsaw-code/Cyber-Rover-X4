@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, AlertTriangle, ShieldCheck, Flame, Eye, Compass, ArrowUpRight } from 'lucide-react';
-import roverMissionImg from '../../assets/rover_mission.jpg';
-import hazardConduitImg from '../../assets/hazard_conduit.jpg';
-import hazardSmokeImg from '../../assets/hazard_smoke.jpg';
+import x5HazardToxicImg from '../../assets/x5_hazard_toxic.jpg';
+import x5HazardFloodedImg from '../../assets/x5_hazard_flooded.jpg';
+import x5HazardSmokeImg from '../../assets/x5_hazard_smoke.jpg';
 
 const HAZARD_SLIDES = [
   {
     id: 0,
     num: '01',
-    category: 'ATMOSPHERIC HAZARD',
-    title: 'Colorless, Odorless Toxic Gases',
-    shortDesc: 'Lethal Carbon Monoxide (CO) and combustible volatile hydrocarbons build up silently in petrochemical manifolds.',
-    fullDesc: 'Sub-surface chemical leaks and combustible vapor pockets present fatal asphyxiation or explosion risks. CyberRover X4 deploys MQ-7 (CO) and MQ-2 (Combustible) sensors to map atmospheric concentrations before human personnel approach.',
-    image: roverMissionImg,
-    hazardTag: 'HAZARD 01 // TOXIC PLUME LEVEL 3',
-    sensorReadout: 'OPTICAL LASER MAPPING: ACTIVE',
-    gasAlert: 'MQ-7 CO SENSOR: 42 PPM (ALERT)',
+    category: 'ATMOSPHERIC EXPLOSION HAZARD',
+    title: 'Toxic Gas Plumes & Methane Manifolds',
+    shortDesc: 'Lethal Methane (CH4), Carbon Monoxide (CO), and volatile explosive hydrocarbons in underground mine tunnels.',
+    fullDesc: 'CyberRover X5 operates in explosive Zone 1 gas atmospheres using an internal nitrogen-purged analysis chamber with dual sintered bronze flame arrestors. Certified to ATEX Ex d IIC T4, it samples lethal fumes without any internal ignition risk.',
+    image: x5HazardToxicImg,
+    hazardTag: 'X5 RECON // ATEX ZONE 1 EX-PROOF',
+    sensorReadout: 'GAS CHAMBER: NITROGEN PURGED',
+    gasAlert: 'MQ-4 & MQ-7: SENSORS ACTIVE',
     accentColor: 'var(--status-hazard)',
     accentBg: 'rgba(255, 77, 79, 0.14)',
     accentBorder: 'rgba(255, 77, 79, 0.5)'
@@ -23,14 +23,14 @@ const HAZARD_SLIDES = [
   {
     id: 1,
     num: '02',
-    category: 'STRUCTURAL HAZARD',
-    title: 'Inaccessible Conduits & Shafts',
-    shortDesc: 'Confined HVAC ducts, utility tunnels, and post-collapse structural voids with zero human access clearance.',
-    fullDesc: 'Narrow sub-floor conduits and hazardous ventilation shafts cannot safely accommodate human inspectors. CyberRover X4 uses its ultra-low 45mm clearance 4WD chassis and forward LED spotlights to navigate tight geometric voids without entrapment risk.',
-    image: hazardConduitImg,
-    hazardTag: 'HAZARD 02 // CONFINED SHAFT 0.4M',
-    sensorReadout: 'OBSTACLE 3D MESH SCAN: ACTIVE',
-    gasAlert: 'CLEARANCE: 38 CM // PASSABLE',
+    category: 'SUBMERSIBLE & FLOODED VOID',
+    title: 'Flooded Mine Shafts & Subterranean Water',
+    shortDesc: '1–4m standing floodwater, toxic drainage mud, and zero-visibility conduits impassable to wheeled units.',
+    fullDesc: 'Engineered as an underwater walker, CyberRover X5 features an IP69K sealed 6061-T6 aluminum pressure vessel rated to 5 atmospheres. Wide chevron tracks grip flooded silt beds while 750kHz scanning sonar and depth sensors map paths through dark turbid water.',
+    image: x5HazardFloodedImg,
+    hazardTag: 'X5 SUBMERSIBLE // IP69K 5 ATM RATED',
+    sensorReadout: 'SCANNING SONAR: ACTIVE (750 kHz)',
+    gasAlert: 'DEPTH WATCHDOG: 2.8M DEPTH',
     accentColor: 'var(--status-warning)',
     accentBg: 'rgba(250, 173, 20, 0.14)',
     accentBorder: 'rgba(250, 173, 20, 0.5)'
@@ -38,14 +38,14 @@ const HAZARD_SLIDES = [
   {
     id: 2,
     num: '03',
-    category: 'OPTICAL HAZARD',
-    title: 'Dense Industrial Smoke & Embers',
-    shortDesc: 'Zero-visibility post-collapse wreckage where optical cameras and human sight fail completely.',
-    fullDesc: 'Heavy particulate soot and smoke blind traditional visual inspection tools. CyberRover X4 pierces zero-visibility atmospheres using 40kHz ultrasonic acoustic sonar pulses to measure distance barriers and map free escape routes in complete darkness.',
-    image: hazardSmokeImg,
-    hazardTag: 'HAZARD 03 // ZERO VISIBILITY VEIL',
-    sensorReadout: 'ACOUSTIC SONAR PULSE: 40 kHz',
-    gasAlert: 'RADAR ECHO RETURN: 120° ARC',
+    category: 'ZERO-VISIBILITY COLLAPSE & SMOKE',
+    title: 'Dense Industrial Smoke & Blast Rubble',
+    shortDesc: 'Post-blast structural rubble, fractured concrete, and dense particulate soot where optical cameras fail completely.',
+    fullDesc: 'CyberRover X5 pierces zero-visibility atmospheres using 3x solid-state Livox LIDAR sensors (300k pts/sec) behind sapphire windows and FLIR thermal infrared imaging. Wide steel-reinforced rubber tracks scale fractured rubble and 45° inclines.',
+    image: x5HazardSmokeImg,
+    hazardTag: 'X5 ALL-TERRAIN // 360° LIDAR & THERMAL',
+    sensorReadout: '360° SOLID-STATE LIDAR: 300K PTS/SEC',
+    gasAlert: 'FLIR THERMAL IR: SURVIVOR LOCK',
     accentColor: 'var(--accent-cyan)',
     accentBg: 'rgba(0, 217, 255, 0.14)',
     accentBorder: 'rgba(0, 217, 255, 0.5)'
@@ -318,7 +318,9 @@ export default function MissionSection() {
                 className="reveal-3d"
                 style={{
                   background: isActive ? 'var(--bg-elevated)' : 'rgba(255, 255, 255, 0.02)',
-                  border: `1px solid ${isActive ? hazard.accentColor : 'var(--border-subtle)'}`,
+                  borderLeft: `1px solid ${isActive ? hazard.accentColor : 'var(--border-subtle)'}`,
+                  borderRight: `1px solid ${isActive ? hazard.accentColor : 'var(--border-subtle)'}`,
+                  borderBottom: `1px solid ${isActive ? hazard.accentColor : 'var(--border-subtle)'}`,
                   borderTop: `4px solid ${hazard.accentColor}`,
                   borderRadius: 'var(--radius-xs)',
                   padding: 'var(--space-6)',

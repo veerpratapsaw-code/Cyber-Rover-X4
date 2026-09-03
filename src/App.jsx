@@ -17,7 +17,6 @@ import ConnectSection from './components/sections/ConnectSection';
 import OperationsSection from './components/sections/OperationsSection';
 import CyberRoverX5Section from './components/sections/CyberRoverX5Section';
 import SpecsSection from './components/sections/SpecsSection';
-import FinaleSection from './components/sections/FinaleSection';
 
 import './styles/tokens.css';
 import './styles/globals.css';
@@ -70,12 +69,9 @@ export default function App() {
 
         {/* 10 // ENGINEERING DATASHEET */}
         <SpecsSection />
-
-        {/* 11 // FINALE */}
-        <FinaleSection />
       </main>
 
-      {/* Technical Footer */}
+      {/* Merged Climax Finale & Technical Aerospace Footer */}
       <FooterFinale />
     </div>
   );

@@ -21,9 +21,9 @@ const PRESET_COMMANDS = [
       action: "ENABLE_CV_TRACKING",
       target_class: "HUMAN_FACE",
       model: "HAAR_CASCADE_FRONTAL",
-      servo_feedback: "CLOSED_LOOP_PID"
+      tracking_feedback: "OPTICAL_TARGET_LOCK"
     },
-    tts: "Facial recognition active. Target acquired at confidence 98.4%. Aligning pan/tilt servos."
+    tts: "Facial recognition active. Target acquired at confidence 98.4%. Tracking target on phone camera."
   },
   {
     text: "Emergency stop! Obstacle detected in forward path.",

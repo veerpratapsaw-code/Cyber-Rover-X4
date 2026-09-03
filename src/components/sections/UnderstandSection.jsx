@@ -72,15 +72,15 @@ export default function UnderstandSection() {
               </div>
 
               <h3 style={{ fontSize: '1.1875rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '8px' }}>
-                Closed-Loop Servo PID
+                Closed-Loop Tracking PID
               </h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '14px' }}>
-                Calculates optical error vector (ΔX = X_center - X_target) and dispatches proportional corrective angles to the pan/tilt servos to maintain target lock.
+                Calculates optical error vector (ΔX = X_center - X_target) on the smartphone camera feed and computes proportional steering correction to maintain target alignment.
               </p>
             </div>
 
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--text-muted)', background: 'rgba(0,0,0,0.4)', padding: '6px 10px', borderRadius: 'var(--radius-xs)', overflowX: 'auto' }}>
-              pan_angle += Kp * (frame_center_x - face_x)
+              steer_angle += Kp * (frame_center_x - target_x)
             </div>
           </div>
 

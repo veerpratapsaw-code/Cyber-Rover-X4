@@ -26,18 +26,19 @@ const SPEC_TABS = [
       { param: 'Barometer & Structural Altitude', val: 'BMP-280 MEMS Sensor (300-1100 hPa, ±1m Altitude)' },
       { param: 'Local Sensor HUD Display', val: '16x2 I2C Liquid Crystal Display (Node 04 Nano)' },
       { param: 'Thermal & Relative Humidity', val: 'DHT-22 Digital Sensor (-40°C to +80°C, 0-100% RH)' },
-      { param: 'Obstacle Sonar Radar', val: 'HC-SR04 Ultrasonic Sensor on SG90 Sweep Servo (120°)' }
+      { param: 'Obstacle Sonar Radar', val: 'HC-SR04 Ultrasonic Obstacle Detection Array' }
     ]
   },
   {
     id: 'vision_compute',
     label: 'COMPUTE & DISTRIBUTED MCUs',
     specs: [
+      { param: 'Primary Optical Recon', val: 'Chassis-Mounted Smartphone Camera (1080p 60FPS Low-Latency FPV)' },
       { param: 'Node 01: Remote Controller', val: 'ESP32 DevKit V1 (Core 0: 35Hz Cyber OS, Core 1: 100Hz RF)' },
       { param: 'Node 02: Rover Master', val: 'ESP32-S3 (CRC-8 Checksum, WS2812 RGB, 500ms Watchdog)' },
       { param: 'Node 03: Motor & Sound Brain', val: 'Arduino Uno (BTS7960 43A PWM + 10-Tone SoundEngine)' },
       { param: 'Node 04: Gas Sensor Node', val: 'Arduino Nano (ADC Gas Acquisition + 16x2 I2C Display)' },
-      { param: 'Node 05: Telemetry Hub & FPV', val: 'ESP32-CAM (OV2640 640x480 MJPEG + REST Server)' },
+      { param: 'Node 05: Telemetry Hub', val: 'ESP32-CAM Sensor Server (BMP280, DHT11 & Gas Telemetry Bridge)' },
       { param: 'Node 06: Ground Cockpit', val: 'Laptop Mission Dashboard (Web Audio + Telemetry HUD)' }
     ]
   },

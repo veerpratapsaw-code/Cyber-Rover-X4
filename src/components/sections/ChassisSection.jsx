@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Cpu, Zap, Eye, Compass, Layers, CheckCircle2, ArrowRight } from 'lucide-react';
 import chassisTractionImg from '../../assets/chassis_traction.jpg';
-import chassisGimbalImg from '../../assets/chassis_gimbal.jpg';
+import chassisPhoneImg from '../../assets/real_rover_field_2.png';
 import chassisMcuImg from '../../assets/chassis_mcu.jpg';
 import chassisBatteryImg from '../../assets/chassis_battery.jpg';
 
@@ -21,14 +21,14 @@ const CHASSIS_MODULES = [
   {
     id: 1,
     num: '02',
-    title: 'Articulated Pan/Tilt Vision Turret',
-    subtitle: '2x SG90 Servos // 180° Pan & 90° Tilt',
-    desc: 'Active dual-servo optical mount decoupled from chassis movement. Delivers 180° azimuth rotation and 90° elevation with precision PWM position control and zero frame shake.',
-    image: chassisGimbalImg,
-    tag: '2-AXIS ARTICULATED GIMBAL',
-    spec1: 'PAN ANGLE: 180° SECTOR',
-    spec2: 'TILT ANGLE: 90° SECTOR',
-    badge: 'ESP32-CAM VISION'
+    title: 'Chassis-Mounted Smartphone Camera Mount',
+    subtitle: 'High-Res Mobile Sensor // Ultra-Wide 1080p FPV',
+    desc: 'Rigid shock-isolated smartphone mounting dock secured to the forward deck. Employs high-resolution mobile camera optics, electronic stabilization, and high-framerate wireless video streaming with zero servo drift or mechanical failure points.',
+    image: chassisPhoneImg,
+    tag: 'SMARTPHONE OPTICAL POD',
+    spec1: 'VIDEO STREAM: 1080p 60FPS LOW-LATENCY',
+    spec2: 'STABILIZATION: HARDWARE SHOCK DAMPING',
+    badge: 'PHONE CAMERA'
   },
   {
     id: 2,
@@ -299,7 +299,9 @@ export default function ChassisSection() {
                   style={{
                     padding: '16px 18px',
                     background: isActive ? 'var(--bg-elevated)' : 'rgba(255, 255, 255, 0.02)',
-                    border: `1px solid ${isActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                    borderTop: `1px solid ${isActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                    borderRight: `1px solid ${isActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
+                    borderBottom: `1px solid ${isActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'}`,
                     borderLeft: `4px solid ${isActive ? 'var(--accent-cyan)' : 'transparent'}`,
                     borderRadius: 'var(--radius-xs)',
                     cursor: 'pointer',

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Camera, Eye, Sliders, Maximize2 } from 'lucide-react';
+import { Smartphone, Camera, ShieldCheck, Zap } from 'lucide-react';
 import VisionHUD from '../ui/VisionHUD';
-import roverTurretImg from '../../assets/rover_turret.jpg';
+import realRoverImg from '../../assets/real_rover_field_1.png';
 
 export default function SeeSection() {
   return (
@@ -29,7 +29,7 @@ export default function SeeSection() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="chapter-number reveal-3d">05 // OPTICAL SYSTEM & ARTICULATED HEAD (SEE)</div>
+        <div className="chapter-number reveal-3d">05 // PRIMARY OPTICAL RECONNAISSANCE (PHONE CAMERA)</div>
 
         <div style={{
           display: 'grid',
@@ -39,44 +39,44 @@ export default function SeeSection() {
         }}>
           {/* Left: Viewfinder HUD */}
           <div className="reveal-3d">
-            <VisionHUD turretImage={roverTurretImg} />
+            <VisionHUD turretImage={realRoverImg} />
           </div>
 
-          {/* Right: Optical Gimbal Architecture */}
+          {/* Right: Optical Reconnaissance Architecture */}
           <div className="reveal-3d">
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-              Independent 2-Axis Optical Reconnaissance
+              Chassis-Mounted Smartphone Optical Reconnaissance
             </h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-4)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-              Standard fixed cameras force a rover to constantly rotate its entire chassis to examine objects, draining battery and risking wheel slippage. 
+              Standard microcontroller cameras suffer from narrow dynamic range, severe compression artifacts, and low frame rates during high-vibration off-road maneuvers.
             </p>
             <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-6)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-              CyberRover X4 decouples vision from mobility through an active dual-servo pan/tilt turret. The ESP32-CAM captures high-framerate optical feeds and delivers continuous visual coverage across vertical and horizontal planes.
+              CyberRover X4 eliminates mechanical servo failure points by utilizing a dedicated high-resolution smartphone camera rigidly docked to the rover bridge. Delivering full 1080p 60FPS video, hardware electronic stabilization (EIS), high-dynamic range, and high-lumen LED torch illumination, it streams crystalline visual reconnaissance over the high-speed 2.4GHz Wi-Fi link.
             </p>
 
             {/* Spec Columns */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <div style={{ padding: '14px 16px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)', marginBottom: '4px' }}>
-                  PAN AXIS (AZIMUTH)
+                  OPTICAL RESOLUTION
                 </div>
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700 }}>
-                  180° Sector
+                  1080p Full HD
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  SG90 base servo (-90° to +90°)
+                  60 FPS Low-Latency FPV Stream
                 </div>
               </div>
 
               <div style={{ padding: '14px 16px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)', marginBottom: '4px' }}>
-                  TILT AXIS (ELEVATION)
+                  SENSOR & STABILIZATION
                 </div>
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700 }}>
-                  90° Sector
+                  Wide-Angle EIS
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  SG90 elevation servo (-45° to +45°)
+                  Electronic Stabilization & LED Torch
                 </div>
               </div>
             </div>

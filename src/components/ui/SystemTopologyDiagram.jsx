@@ -32,7 +32,7 @@ const NODES = [
     mcu: 'Arduino Uno (ATmega328P 16MHz)',
     bus: 'UART RX + 43A BTS7960 Drivers',
     color: '#00e5ff',
-    desc: 'Hard real-time motor controller. Drives dual BTS7960 43A MOSFET H-bridges with PWM acceleration ramping, sweeps HC-SR04 sonar radar on SG90 servo, and generates 10 non-blocking tactical sirens.',
+    desc: 'Hard real-time motor controller. Drives dual BTS7960 43A MOSFET H-bridges with PWM acceleration ramping, samples HC-SR04 acoustic obstacle radar array, and generates 10 non-blocking tactical sirens.',
     specs: ['Dual BTS7960 (43A Continuous)', 'PWM Slew-Rate Ramping', '10-Tone Non-Blocking Sound Engine']
   },
   {
