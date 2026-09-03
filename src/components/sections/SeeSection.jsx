@@ -51,20 +51,20 @@ export default function SeeSection() {
               Standard microcontroller cameras suffer from narrow dynamic range, severe compression artifacts, and low frame rates during high-vibration off-road maneuvers.
             </p>
             <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-6)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-              CyberRover X4 eliminates mechanical servo failure points by utilizing a dedicated high-resolution smartphone camera rigidly docked to the rover bridge. Delivering full 1080p 60FPS video, hardware electronic stabilization (EIS), high-dynamic range, and high-lumen LED torch illumination, it streams crystalline visual reconnaissance over the high-speed 2.4GHz Wi-Fi link.
+              CyberRover X4.2 eliminates mechanical servo failure points by utilizing a dedicated high-resolution smartphone camera securely docked to the rover chassis. Delivering real-time high-definition video observation, electronic image stabilization (EIS), and high-lumen illumination, it streams operator reconnaissance over a local Wi-Fi link while the separate ESP32-CAM serves as an environmental sensor gateway.
             </p>
 
             {/* Spec Columns */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
               <div style={{ padding: '14px 16px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)' }}>
                 <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)', marginBottom: '4px' }}>
-                  OPTICAL RESOLUTION
+                  OPTICAL RECONNAISSANCE
                 </div>
                 <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700 }}>
-                  1080p Full HD
+                  Smartphone Optics
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  60 FPS Low-Latency FPV Stream
+                  Live Operator FPV Visual Stream
                 </div>
               </div>
 

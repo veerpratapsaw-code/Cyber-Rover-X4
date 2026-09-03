@@ -44,15 +44,15 @@ export default function FooterFinale() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '4px 16px',
-            background: 'rgba(0, 217, 255, 0.06)',
-            border: '1px solid rgba(0, 217, 255, 0.25)',
+            padding: '4px 14px',
+            background: 'rgba(57, 229, 140, 0.08)',
+            border: '1px solid rgba(57, 229, 140, 0.3)',
             borderRadius: 'var(--radius-full)',
             marginBottom: 'var(--space-4)'
           }}>
-            <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent-cyan)', boxShadow: '0 0 8px var(--accent-cyan)' }} />
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: 'var(--accent-cyan)', letterSpacing: '0.18em' }}>
-              AUTONOMOUS ROBOTICS EXHIBITION // 2026
+            <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--status-nominal)', boxShadow: '0 0 8px var(--status-nominal)' }} />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 700, color: 'var(--status-nominal)', letterSpacing: '0.14em' }}>
+              ROBOTICS ENGINEERING EXHIBITION // 2026 PROTOTYPE
             </span>
           </div>
 
@@ -87,7 +87,7 @@ export default function FooterFinale() {
             margin: '0 auto var(--space-5)',
             maxWidth: '640px'
           }}>
-            Engineering next-generation autonomous ground reconnaissance for human safety across extreme hazard frontiers. Atmospheric multi-gas mapping and subterranean navigation without human risk.
+            Engineering remote reconnaissance and environmental inspection for human safety across hazardous frontiers. Operator-controlled multi-gas indication and spatial proximity assistance before human teams commit to entry.
           </p>
 
           {/* 3 Unified Spec Badges */}
@@ -99,13 +99,13 @@ export default function FooterFinale() {
             marginBottom: 'var(--space-6)'
           }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', padding: '5px 12px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', color: 'var(--text-primary)' }}>
-              PLATFORM: <strong style={{ color: 'var(--accent-cyan)' }}>MODEL X4.2</strong>
+              PLATFORM: <strong style={{ color: 'var(--status-nominal)' }}>MODEL X4.2 (PROTOTYPE)</strong>
             </span>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', padding: '5px 12px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', color: 'var(--text-primary)' }}>
-              SYSTEM: <strong style={{ color: 'var(--accent-cyan)' }}>6-NODE DISTRIBUTED</strong>
+              SYSTEM: <strong style={{ color: 'var(--accent-cyan)' }}>6-NODE DECOUPLED</strong>
             </span>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', padding: '5px 12px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', color: 'var(--text-primary)' }}>
-              STATUS: <strong style={{ color: 'var(--status-nominal)' }}>MISSION CERTIFIED (L4)</strong>
+              STATUS: <strong style={{ color: 'var(--status-nominal)' }}>DEMONSTRATED PROTOTYPE</strong>
             </span>
           </div>
 
@@ -247,6 +247,30 @@ export default function FooterFinale() {
           </div>
 
           {/* Minimal Status & Year */}
+        {/* Verbatim Final Engineering & Regulatory Disclaimer */}
+        <div style={{
+          padding: '12px 18px',
+          background: 'rgba(255, 176, 32, 0.05)',
+          border: '1px solid rgba(255, 176, 32, 0.25)',
+          borderRadius: 'var(--radius-xs)',
+          marginBottom: 'var(--space-6)',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.6875rem',
+          color: 'var(--text-secondary)',
+          lineHeight: 1.6,
+          textAlign: 'center'
+        }}>
+          <strong style={{ color: 'var(--status-warning)' }}>ENGINEERING & REGULATORY DISCLAIMER:</strong> CyberRover X4.2 is a student-built engineering prototype for remote reconnaissance and environmental inspection. It is not currently certified for explosion-proof, intrinsically safe, mining, fire-entry, or military deployment. Future X5 specifications represent proposed engineering development.
+        </div>
+
+        {/* Bottom Metadata */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '16px'
+        }}>
           <div style={{
             fontFamily: 'var(--font-mono)',
             fontSize: '0.75rem',
@@ -256,16 +280,17 @@ export default function FooterFinale() {
             alignItems: 'center',
             flexWrap: 'wrap'
           }}>
-            <span>© 2026 CYBERROVER X4</span>
+            <span>© 2026 CYBERROVER X4.2</span>
             <span>·</span>
             <span>RBOTICS LABS</span>
             <span>·</span>
-            <span>LEVEL 4 AUTONOMY</span>
+            <span style={{ color: 'var(--status-nominal)' }}>OPERATOR-CONTROLLED PROTOTYPE</span>
             <span>·</span>
             <span>ALL RIGHTS RESERVED</span>
           </div>
         </div>
       </div>
+    </div>
 
       {/* ============================================================ */}
       {/* INTERACTIVE CREATOR DOSSIER MODAL                            */}

@@ -29,7 +29,7 @@ export default function MoveSection({ telemetry }) {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="chapter-number reveal-3d">03 // AUTONOMOUS MOBILITY & ACOUSTIC SOUND ENGINE (MOVE)</div>
+        <div className="chapter-number reveal-3d">03 // OPERATOR MOBILITY & ACOUSTIC NAVIGATION ASSIST (MOVE)</div>
 
         <div style={{
           display: 'grid',
@@ -41,13 +41,13 @@ export default function MoveSection({ telemetry }) {
           {/* Left: Logic Architecture */}
           <div className="reveal-3d">
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-              Tri-Directional Acoustic Sonar & BTS7960 43A Power
+              Tri-Directional Acoustic Sonar & Dual BTS7960 Drivers
             </h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-4)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-              Unlike optical cameras that fail in dense smoke or total blackouts, CyberRover X4 utilizes ultrasonic acoustic transducers coupled with a high-torque traction drivetrain.
+              Unlike optical cameras that can suffer in dense smoke or total blackouts, CyberRover X4.2 utilizes ultrasonic acoustic transducers coupled with a high-torque 4WD drivetrain.
             </p>
             <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-8)', fontSize: '0.9375rem', lineHeight: 1.6 }}>
-              40kHz acoustic pulses reflect off barriers in real time. The Arduino Uno motor controller processes returns, calculating vector clearances and feeding hardware PWM acceleration curves to dual BTS7960 43A MOSFET drivers.
+              40kHz acoustic pulses reflect off barriers in real time. The Arduino Uno motor controller processes proximity returns across three forward sectors, calculating vector clearances and feeding hardware PWM acceleration curves to dual BTS7960 high-current motor drivers.
             </p>
 
             {/* Step-by-Step Logic Pipeline */}
@@ -58,7 +58,7 @@ export default function MoveSection({ telemetry }) {
                     01 // Acoustic Pulse Transmission
                   </div>
                   <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    10μs TTL trigger pulse fires across Left (-45°), Center (0°), and Right (+45°) sectors.
+                    10μs TTL trigger pulse fires across Left (-45°), Center (0°), and Right (+45°) HC-SR04 sectors.
                   </div>
                 </div>
               </div>
@@ -66,10 +66,10 @@ export default function MoveSection({ telemetry }) {
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', borderLeft: '2px solid var(--accent-cyan)', paddingLeft: '12px' }}>
                 <div>
                   <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9375rem', fontFamily: 'var(--font-heading)' }}>
-                    02 // Echo Timing & Vector Arbitration
+                    02 // Echo Timing & Navigation Guidance
                   </div>
                   <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    Distance = (Echo Time × 0.0343 cm/μs) / 2. Center threshold &lt; 30cm commands evasive steering.
+                    Distance = (Echo Time × 0.0343 cm/μs) / 2. Center threshold &lt; 30cm prompts collision warning and evasion recommendations.
                   </div>
                 </div>
               </div>
@@ -77,10 +77,10 @@ export default function MoveSection({ telemetry }) {
               <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', borderLeft: '2px solid var(--status-nominal)', paddingLeft: '12px' }}>
                 <div>
                   <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9375rem', fontFamily: 'var(--font-heading)' }}>
-                    03 // BTS7960 43A MOSFET Traction & Slew Ramping
+                    03 // Dual BTS7960 Motor Drivers & PWM Acceleration
                   </div>
                   <div style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    Twin BTS7960 43A MOSFET bridges modulate left/right motor PWM with 20ms ramping to prevent gear stripping and voltage sags.
+                    High-current MOSFET bridges driven by hardware PWM provide smooth motor torque curves without aggressive current spikes on battery rails.
                   </div>
                 </div>
               </div>

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Factory, HardHat, AlertOctagon, Mountain, ShieldCheck } from 'lucide-react';
+import { Factory, HardHat, AlertOctagon, Mountain, ShieldCheck, Flame } from 'lucide-react';
 
 const THEATERS = [
   {
-    icon: Factory,
-    title: 'Petrochemical & Refineries',
-    tag: 'HAZARDOUS ATMOSPHERES',
-    desc: 'Autonomous perimeter patrols around volatile cracking units and high-pressure gas manifolds. Rapid detection of combustible methane and natural gas (MQ-4) and odorless carbon monoxide (MQ-7) prevents catastrophic industrial deflagration.'
+    icon: Flame,
+    title: 'Petrochemical & Gas Refineries',
+    tag: 'EXPLOSIVE VAPOR HAZARD',
+    desc: 'Targeted inspection patrols around volatile cracking units and high-pressure gas manifolds. Rapid detection of combustible methane (MQ-4) and carbon monoxide (MQ-7) alerts operators to hazardous leaks.'
   },
   {
     icon: HardHat,
@@ -24,7 +24,7 @@ const THEATERS = [
     icon: Mountain,
     title: 'Sub-Surface Mining Safety',
     tag: 'OXYGEN & GAS PROFILING',
-    desc: 'Pre-shift atmospheric mapping of deep mining shafts. Validates thermal equilibrium (DHT-22) and ensures air quality index thresholds (MQ-135) meet strict occupational safety standards before miner entry.'
+    desc: 'Pre-shift atmospheric mapping of deep mining shafts. Evaluates ambient temperature (DHT-11) and monitors relative gas presence (MQ-4, MQ-135) to provide early environmental warnings.'
   }
 ];
 
@@ -58,15 +58,27 @@ export default function OperationsSection() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="chapter-number reveal-3d">08 // OPERATIONAL DEPLOYMENT THEATERS</div>
+        <div className="chapter-number reveal-3d">08 // TARGET OPERATIONAL THEATERS</div>
 
-        <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-12)' }}>
+        <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-8)' }}>
           <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-            Mission-Critical Utility Where Failure Is Not an Option
+            Target Application Theaters & Reconnaissance Scenarios
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-            CyberRover X4 is engineered to withstand extreme environmental dust, volatile atmospheres, and confined geometry across mission-critical industrial sectors.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7, marginBottom: 'var(--space-3)' }}>
+            CyberRover X4.2 is developed as an inspection platform for assessing environmental dust, volatile atmospheres, and confined geometry across industrial research and disaster-reconnaissance scenarios.
           </p>
+
+          <div style={{
+            padding: '8px 14px',
+            background: 'rgba(255, 176, 32, 0.06)',
+            border: '1px solid rgba(255, 176, 32, 0.25)',
+            borderRadius: 'var(--radius-xs)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.6875rem',
+            color: 'var(--text-secondary)'
+          }}>
+            <strong style={{ color: 'var(--status-warning)' }}>PROTOTYPE NOTICE:</strong> CyberRover X4.2 is a student-built engineering prototype and is not currently certified for deployment in regulated hazardous environments. Industrial theaters listed below represent proposed deployment concepts.
+          </div>
         </div>
 
         {/* 4 Theater Modules */}
@@ -104,9 +116,9 @@ export default function OperationsSection() {
                 </p>
               </div>
 
-              <div style={{ marginTop: 'var(--space-6)', paddingTop: 'var(--space-4)', borderTop: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--status-nominal)' }}>
+              <div style={{ marginTop: 'var(--space-6)', paddingTop: 'var(--space-4)', borderTop: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)' }}>
                 <ShieldCheck size={14} />
-                <span>MISSION CERTIFIED // LEVEL 4</span>
+                <span>TARGET APPLICATION // PROPOSED DEPLOYMENT</span>
               </div>
             </div>
           ))}

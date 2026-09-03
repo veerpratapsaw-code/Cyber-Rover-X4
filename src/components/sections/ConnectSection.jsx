@@ -33,10 +33,10 @@ export default function ConnectSection() {
 
         <div className="reveal-3d" style={{ maxWidth: '820px', marginBottom: 'var(--space-10)' }}>
           <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-            Dual-Layer Decoupled Architecture: 100Hz ESP-NOW & Autonomous Telemetry
+            Dual-Layer Decoupled Architecture: Dedicated Drive Control & Wi-Fi Telemetry
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-            CyberRover X4.2 eliminates single-point failures by separating real-time driving from sensor telemetry. Layer 1 operates 100% offline via sub-millisecond ESP-NOW RF, ensuring deterministic emergency braking even under complete Wi-Fi blackout.
+            CyberRover X4.2 separates real-time driving control from sensor telemetry so that telemetry delays or Wi-Fi drops do not disrupt mobility control. Layer 1 operates via dedicated ESP-NOW peer-to-peer radio with a 500ms safety watchdog, while Layer 2 handles environmental sensor logging and operator video feeds.
           </p>
         </div>
 

@@ -6,52 +6,52 @@ const SPEC_TABS = [
     id: 'chassis',
     label: 'CHASSIS & TRACTION',
     specs: [
-      { param: 'Propulsion Configuration', val: '4WD Independent High-Torque Geared DC Motors' },
-      { param: 'Motor Drivers', val: 'Dual BTS7960 43A High-Current MOSFET H-Bridges' },
+      { param: 'Propulsion Configuration', val: '4WD Independent Geared DC Motors' },
+      { param: 'Motor Drivers', val: 'Dual BTS7960 High-Current MOSFET Drivers' },
       { param: 'Motor Acceleration Profiling', val: 'ATmega328P Hardware PWM Slew-Rate Ramping' },
       { param: 'Steering Method', val: 'Differential Skid Steering (Zero-Turn Radius)' },
-      { param: 'Operating Ground Clearance', val: '45 mm (High-Impact Engineering Chassis)' },
-      { param: 'Max Continuous Incline', val: '32° Rubble Grade' },
+      { param: 'Operating Ground Clearance', val: '45 mm (High-Impact Engineering Polymers)' },
+      { param: 'Obstacle Navigation Assist', val: '3-Sector HC-SR04 Sonar Proximity Guidance' },
       { param: 'Total Platform Mass', val: '2.85 kg (Including Battery & Sensor Pod)' },
-      { param: 'Max Usable Payload', val: '3.50 kg' }
+      { param: 'Operating Control Mode', val: 'Operator-Controlled via Handheld Remote' }
     ]
   },
   {
     id: 'sensors',
     label: 'HAZMAT & SENSING SUITE',
     specs: [
-      { param: 'Combustible & Mine Gas', val: 'MQ-4 SnO2 Sensor (Methane CH4, Natural Gas, LEL 5%)' },
-      { param: 'Carbon Monoxide Asphyxiant', val: 'MQ-7 Thermal Cycling Sensor (CO 20 - 2000 ppm)' },
-      { param: 'Hazardous Air Quality & NH3', val: 'MQ-135 Sensor (Ammonia, NOx, Benzene, Volatiles)' },
-      { param: 'Barometer & Structural Altitude', val: 'BMP-280 MEMS Sensor (300-1100 hPa, ±1m Altitude)' },
-      { param: 'Local Sensor HUD Display', val: '16x2 I2C Liquid Crystal Display (Node 04 Nano)' },
-      { param: 'Thermal & Relative Humidity', val: 'DHT-22 Digital Sensor (-40°C to +80°C, 0-100% RH)' },
-      { param: 'Obstacle Sonar Radar', val: 'HC-SR04 Ultrasonic Obstacle Detection Array' }
+      { param: 'Combustible Gas Indication', val: 'MQ-4 Analog Sensor (Raw ADC Indication: Methane CH4)' },
+      { param: 'Carbon Monoxide Indication', val: 'MQ-7 Thermal Sensor (Raw ADC Indication: CO Presence)' },
+      { param: 'Air Quality Indication', val: 'MQ-135 Sensor (Raw ADC Indication: Broad Volatile Gases)' },
+      { param: 'Barometer & Relative Altitude', val: 'BMP-280 MEMS Sensor (300-1100 hPa Barometric Pressure)' },
+      { param: 'Local Sensor HUD Display', val: '16x2 I2C Liquid Crystal Display (Node 04 Arduino Nano)' },
+      { param: 'Ambient Temperature & Humidity', val: 'DHT11 Digital Sensor (Ambient 0°C to 50°C, 20-80% RH)' },
+      { param: 'Obstacle Sonar Radar', val: '3 × HC-SR04 Ultrasonic Transducers (L / C / R Sectors)' }
     ]
   },
   {
     id: 'vision_compute',
     label: 'COMPUTE & DISTRIBUTED MCUs',
     specs: [
-      { param: 'Primary Optical Recon', val: 'Chassis-Mounted Smartphone Camera (1080p 60FPS Low-Latency FPV)' },
-      { param: 'Node 01: Remote Controller', val: 'ESP32 DevKit V1 (Core 0: 35Hz Cyber OS, Core 1: 100Hz RF)' },
+      { param: 'Primary Optical Feed', val: 'Chassis-Mounted Smartphone Camera (Live FPV Stream)' },
+      { param: 'Node 01: Remote Controller', val: 'ESP32 DevKit V1 (0.96" SSD1306 OLED UI + Joystick)' },
       { param: 'Node 02: Rover Master', val: 'ESP32-S3 (CRC-8 Checksum, WS2812 RGB, 500ms Watchdog)' },
-      { param: 'Node 03: Motor & Sound Brain', val: 'Arduino Uno (BTS7960 43A PWM + 10-Tone SoundEngine)' },
+      { param: 'Node 03: Motor & Sonar Brain', val: 'Arduino Uno (Dual BTS7960 Drivers + Ultrasonic Logic)' },
       { param: 'Node 04: Gas Sensor Node', val: 'Arduino Nano (ADC Gas Acquisition + 16x2 I2C Display)' },
-      { param: 'Node 05: Telemetry Hub', val: 'ESP32-CAM Sensor Server (BMP280, DHT11 & Gas Telemetry Bridge)' },
-      { param: 'Node 06: Ground Cockpit', val: 'Laptop Mission Dashboard (Web Audio + Telemetry HUD)' }
+      { param: 'Node 05: Telemetry Hub', val: 'ESP32-CAM (BMP280, DHT11 & Gas Telemetry Gateway)' },
+      { param: 'Node 06: Ground Cockpit', val: 'Laptop Mission Dashboard (Telemetry HUD + Audio)' }
     ]
   },
   {
     id: 'power_network',
     label: 'ELECTRICAL & RF PROTOCOL',
     specs: [
-      { param: 'Layer 1: Drive RF Bus', val: 'ESP-NOW 2.4GHz Peer-to-Peer Radio (100Hz, < 1ms Airtime)' },
-      { param: 'Layer 2: Telemetry Wi-Fi', val: '802.11 b/g/n Hotspot (REST JSON Endpoint + MJPEG Stream)' },
-      { param: 'End-to-End Control Latency', val: '< 10 ms Deterministic Braking & Steering' },
-      { param: 'Primary Battery Chemistry', val: '3S Li-Po / Li-Ion (11.85V Nominal, 3000mAh)' },
-      { param: 'Power Rail Isolation', val: 'Dual LM2596 Step-Down Buck Converters (Isolated 5V / 3.3V Logic)' },
-      { param: 'Fail-Safe Protection', val: '500ms Radio Loss Auto-Brake + Physical E-Brake Switch' }
+      { param: 'Layer 1: Drive RF Bus', val: 'ESP-NOW 2.4GHz Peer-to-Peer Radio (Dedicated Control Link)' },
+      { param: 'Layer 2: Telemetry Wi-Fi', val: '802.11 b/g/n Telemetry Network (REST JSON + Video Stream)' },
+      { param: 'Control Failsafe Response', val: '500ms Hardware Watchdog Auto-Stop on Signal Loss' },
+      { param: 'Primary Battery Chemistry', val: '3S Li-Ion Battery Pack (11.85V Nominal)' },
+      { param: 'Power Rail Isolation', val: 'Dual Step-Down Buck Converters (Isolated Logic Rails)' },
+      { param: 'Platform Certification Status', val: 'Student-Built Prototype (Not Certified for Regulated Zones)' }
     ]
   }
 ];
@@ -183,8 +183,20 @@ export default function SpecsSection() {
           </div>
 
           <div style={{ padding: '10px 16px', background: 'var(--bg-elevated)', borderTop: '1px solid var(--border-subtle)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'var(--text-muted)' }}>
-            <span>DOC REV: 4.2.0-STABLE</span>
-            <span style={{ color: 'var(--status-nominal)' }}>BENCHMARKS: 100% PASSED</span>
+            <span>DOC REV: 4.2.0-STABLE // X4.2 PROTOTYPE AUDIT</span>
+            <span style={{ color: 'var(--status-nominal)' }}>DEMO PROTOTYPE BENCHMARK</span>
+          </div>
+
+          <div style={{
+            padding: '8px 16px',
+            background: 'rgba(255, 176, 32, 0.04)',
+            borderTop: '1px solid rgba(255, 176, 32, 0.15)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.625rem',
+            color: 'var(--text-muted)',
+            lineHeight: 1.5
+          }}>
+            * Technical note: Gas sensor readings reflect raw analog ADC indications. Specifications document the built CyberRover X4.2 academic engineering prototype. Regulated ATEX and submersible IP69K parameters apply to proposed X5 future development.
           </div>
         </div>
       </div>

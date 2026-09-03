@@ -34,9 +34,9 @@ export default function FinaleSection() {
           borderRadius: 'var(--radius-full)',
           marginBottom: 'var(--space-6)'
         }}>
-          <span className="animate-blink" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--accent-cyan)' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 600, color: 'var(--accent-cyan)', letterSpacing: '0.18em' }}>
-            AUTONOMOUS ROBOTICS EXHIBITION // 2026
+          <span className="animate-blink" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--status-nominal)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', fontWeight: 600, color: 'var(--status-nominal)', letterSpacing: '0.18em' }}>
+            ROBOTICS ENGINEERING EXHIBITION // 2026 PROTOTYPE
           </span>
         </div>
 
@@ -46,7 +46,7 @@ export default function FinaleSection() {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent'
         }}>
-          CYBERROVER <span style={{ color: 'var(--accent-cyan)', WebkitTextFillColor: 'var(--accent-cyan)' }}>X4</span>
+          CYBERROVER <span style={{ color: 'var(--accent-cyan)', WebkitTextFillColor: 'var(--accent-cyan)' }}>X4.2</span>
         </h2>
 
         {/* 3 Bold Staggered Words */}
@@ -74,7 +74,7 @@ export default function FinaleSection() {
           color: 'var(--text-secondary)',
           lineHeight: 1.7
         }}>
-          Engineering next-generation autonomous ground reconnaissance for human safety across extreme hazard frontiers.
+          Engineering remote reconnaissance and environmental inspection for human safety across hazardous frontiers.
         </p>
 
         {/* Back to top button */}

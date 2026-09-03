@@ -8,10 +8,10 @@ const NODES = [
     num: 'NODE 01',
     name: 'Remote Controller',
     mcu: 'ESP32 DevKit V1 (240MHz)',
-    bus: 'ESP-NOW 2.4GHz RF (100Hz)',
+    bus: 'ESP-NOW 2.4GHz RF (Dedicated)',
     color: '#00e5ff',
-    desc: 'FreeRTOS Dual-Core architecture. Core 0 executes 35Hz OLED display UI (Cyber OS); Core 1 handles 100Hz ADC analog joystick sampling, calibration and peer-to-peer radio transmission.',
-    specs: ['OLED: 128x64 Fast I2C (400kHz)', 'Latency: < 1ms Airtime', 'Power: 18650 Li-Ion Cell']
+    desc: 'FreeRTOS Dual-Core architecture. Core 0 executes 0.96" SSD1306 OLED display UI (Cyber OS); Core 1 handles analog joystick sampling, calibration and peer-to-peer radio transmission.',
+    specs: ['0.96" SSD1306 I2C OLED', 'Peer-to-Peer ESP-NOW RF', '18650 Li-Ion Cell Power']
   },
   {
     id: 'node02',
@@ -21,8 +21,8 @@ const NODES = [
     mcu: 'ESP32-S3 DevKit (240MHz)',
     bus: 'ESP-NOW RX + Hardware UART TX',
     color: '#39e58c',
-    desc: 'Receives 9-byte binary CyberPacket frames at 100Hz. Verifies hardware CRC-8 checksum, drives WS2812 RGB state lights, enforces 500ms safety watchdog, and bridges commands to Uno via UART at 38400 baud.',
-    specs: ['CRC-8 Packet Verification', 'WS2812 Multi-Color State LED', '500ms Emergency Failsafe']
+    desc: 'Receives binary packet frames from the remote controller. Verifies CRC-8 checksums, drives WS2812 RGB state lights, enforces 500ms safety watchdog, and bridges commands to Uno via UART at 38400 baud.',
+    specs: ['CRC-8 Packet Verification', 'WS2812 State LED', '500ms Emergency Failsafe']
   },
   {
     id: 'node03',
@@ -30,10 +30,10 @@ const NODES = [
     num: 'NODE 03',
     name: 'Motor & Radar Brain',
     mcu: 'Arduino Uno (ATmega328P 16MHz)',
-    bus: 'UART RX + 43A BTS7960 Drivers',
+    bus: 'UART RX + BTS7960 Drivers',
     color: '#00e5ff',
-    desc: 'Hard real-time motor controller. Drives dual BTS7960 43A MOSFET H-bridges with PWM acceleration ramping, samples HC-SR04 acoustic obstacle radar array, and generates 10 non-blocking tactical sirens.',
-    specs: ['Dual BTS7960 (43A Continuous)', 'PWM Slew-Rate Ramping', '10-Tone Non-Blocking Sound Engine']
+    desc: 'Hardware motor controller. Drives dual BTS7960 high-current MOSFET bridges with PWM acceleration ramping, samples 3x HC-SR04 ultrasonic obstacle array, and generates tactical siren audio alerts.',
+    specs: ['Dual BTS7960 High-Current Drivers', 'PWM Acceleration Ramping', '10-Tone Non-Blocking Sound Engine']
   },
   {
     id: 'node04',
@@ -43,19 +43,19 @@ const NODES = [
     mcu: 'Arduino Nano (ATmega328P 16MHz)',
     bus: 'Analog ADC + I2C LCD + UART',
     color: '#ff9500',
-    desc: 'Dedicated hazardous gas acquisition module. Continuously reads MQ-4 Methane, MQ-7 Carbon Monoxide, and MQ-135 Air Quality sensors, displaying local ppm readings on a 16x2 I2C LCD before relaying.',
-    specs: ['MQ-4 Methane (CH4)', 'MQ-7 Carbon Monoxide (CO)', '16x2 I2C Local LCD Display']
+    desc: 'Dedicated hazardous gas acquisition module. Continuously reads MQ-4 Methane, MQ-7 Carbon Monoxide, and MQ-135 Air Quality sensors, displaying local raw ADC values on a 16x2 I2C LCD before relaying.',
+    specs: ['MQ-4 Methane Indication', 'MQ-7 Carbon Monoxide Indication', '16x2 I2C Local LCD Indication']
   },
   {
     id: 'node05',
     layer: 'layer2',
     num: 'NODE 05',
-    name: 'Telemetry Hub & FPV',
-    mcu: 'ESP32-CAM (OV2640 2MP)',
+    name: 'Telemetry Hub & Gateway',
+    mcu: 'ESP32-CAM (Sensor Gateway)',
     bus: 'Wi-Fi 802.11 b/g/n + I2C BMP280',
     color: '#ff4444',
-    desc: 'Hosts REST API web server and MJPEG low-latency optical video stream. Samples BMP280 barometric pressure/altitude & DHT11 climate, bundling gas and atmospheric telemetry into JSON packets.',
-    specs: ['OV2640 640x480 MJPEG Video', 'BMP280 Barometer & Structural Altitude', 'JSON Telemetry REST Endpoint']
+    desc: 'Serves as environmental telemetry gateway and hub. Samples BMP280 barometric pressure/relative elevation and DHT11 climate readings, packaging sensor readings into JSON packets for the Wi-Fi telemetry stream.',
+    specs: ['Wi-Fi Telemetry Server', 'BMP280 Barometer & Relative Altitude', 'JSON Telemetry REST Gateway']
   },
   {
     id: 'node06',
@@ -65,7 +65,7 @@ const NODES = [
     mcu: 'Laptop Ground Station (Host)',
     bus: 'Wi-Fi WebSockets / REST / Web Audio',
     color: '#1677ff',
-    desc: 'Mission command software. Renders 2-column live FPV optical feed, real-time gas dispersion graphs, synthetic voice alerts, battery voltage monitor, and manual override controls outside the hot-zone.',
+    desc: 'Mission command software. Renders live smartphone camera FPV optical feed, real-time gas indication graphs, synthetic voice alerts, battery voltage telemetry, and manual override controls outside the inspection area.',
     specs: ['Web Audio Synthesizer', 'Real-Time Telemetry Graphs', 'Custom High-Visibility HUD Reticle']
   }
 ];

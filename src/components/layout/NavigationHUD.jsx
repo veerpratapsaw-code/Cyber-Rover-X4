@@ -5,11 +5,12 @@ import { smoothScrollTo } from '../../hooks/useSmoothScroll';
 const NAV_LINKS = [
   { id: 'hero', label: 'PLATFORM', num: '01' },
   { id: 'chassis', label: 'CHASSIS', num: '02' },
-  { id: 'mobility', label: 'MOBILITY & AUDIO', num: '03' },
+  { id: 'mobility', label: 'MOBILITY', num: '03' },
   { id: 'sensors', label: 'HAZMAT', num: '04' },
   { id: 'system', label: 'TOPOLOGY & OS', num: '05' },
-  { id: 'x5-future', label: 'X5 FUTURE', num: '06' },
-  { id: 'specs', label: 'SPECS', num: '07' }
+  { id: 'limitations', label: 'LIMITATIONS', num: '06' },
+  { id: 'x5-future', label: 'X5 FUTURE', num: '07' },
+  { id: 'specs', label: 'SPECS', num: '08' }
 ];
 
 export default function NavigationHUD({ activeSection, scrollPercent, batteryVoltage = 11.85 }) {
@@ -68,7 +69,7 @@ export default function NavigationHUD({ activeSection, scrollPercent, batteryVol
         >
           <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--status-nominal)', boxShadow: '0 0 8px var(--status-nominal)' }} />
           <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: 'clamp(0.9375rem, 3vw, 1.0625rem)', letterSpacing: '-0.02em', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
-            CYBERROVER <span style={{ color: 'var(--accent-cyan)' }}>X4</span>
+            CYBERROVER <span style={{ color: 'var(--accent-cyan)' }}>X4.2</span>
           </span>
         </div>
 
@@ -264,8 +265,8 @@ export default function NavigationHUD({ activeSection, scrollPercent, batteryVol
             <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{batteryVoltage}V (NOMINAL)</div>
           </div>
           <div>
-            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem' }}>AUTONOMY</div>
-            <div style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>LEVEL 4</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem' }}>CONTROL MODE</div>
+            <div style={{ color: 'var(--status-nominal)', fontWeight: 600 }}>OPERATOR + SENSORS</div>
           </div>
         </div>
       </div>

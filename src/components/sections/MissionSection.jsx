@@ -10,12 +10,12 @@ const HAZARD_SLIDES = [
     num: '01',
     category: 'ATMOSPHERIC EXPLOSION HAZARD',
     title: 'Toxic Gas Plumes & Methane Manifolds',
-    shortDesc: 'Lethal Methane (CH4), Carbon Monoxide (CO), and volatile explosive hydrocarbons in underground mine tunnels.',
-    fullDesc: 'CyberRover X5 operates in explosive Zone 1 gas atmospheres using an internal nitrogen-purged analysis chamber with dual sintered bronze flame arrestors. Certified to ATEX Ex d IIC T4, it samples lethal fumes without any internal ignition risk.',
+    shortDesc: 'Proposed future capability: Methane (CH4) & Carbon Monoxide (CO) detection in regulated explosive mine atmospheres.',
+    fullDesc: 'Target concept for CyberRover X5: engineered to operate in explosive Zone 1 gas atmospheres using an internal nitrogen-purged analysis chamber with dual sintered bronze flame arrestors to sample volatile fumes safely without ignition risk.',
     image: x5HazardToxicImg,
-    hazardTag: 'X5 RECON // ATEX ZONE 1 EX-PROOF',
+    hazardTag: 'PROPOSED X5 ROADMAP // ATEX TARGET',
     sensorReadout: 'GAS CHAMBER: NITROGEN PURGED',
-    gasAlert: 'MQ-4 & MQ-7: SENSORS ACTIVE',
+    gasAlert: 'MQ-4 & MQ-7: PROTOTYPE INDICATION',
     accentColor: 'var(--status-hazard)',
     accentBg: 'rgba(255, 77, 79, 0.14)',
     accentBorder: 'rgba(255, 77, 79, 0.5)'
@@ -25,12 +25,12 @@ const HAZARD_SLIDES = [
     num: '02',
     category: 'SUBMERSIBLE & FLOODED VOID',
     title: 'Flooded Mine Shafts & Subterranean Water',
-    shortDesc: '1–4m standing floodwater, toxic drainage mud, and zero-visibility conduits impassable to wheeled units.',
-    fullDesc: 'Engineered as an underwater walker, CyberRover X5 features an IP69K sealed 6061-T6 aluminum pressure vessel rated to 5 atmospheres. Wide chevron tracks grip flooded silt beds while 750kHz scanning sonar and depth sensors map paths through dark turbid water.',
+    shortDesc: 'Proposed future capability: 1–4m standing floodwater navigation in submerged conduits impassable to wheeled units.',
+    fullDesc: 'Target concept for CyberRover X5: planned as a submersible tracked crawler featuring an IP69K sealed 6061-T6 aluminum pressure hull rated to 5 atmospheres, with high-torque tracks and scanning sonar to traverse flooded silt beds.',
     image: x5HazardFloodedImg,
-    hazardTag: 'X5 SUBMERSIBLE // IP69K 5 ATM RATED',
-    sensorReadout: 'SCANNING SONAR: ACTIVE (750 kHz)',
-    gasAlert: 'DEPTH WATCHDOG: 2.8M DEPTH',
+    hazardTag: 'PROPOSED X5 ROADMAP // IP69K TARGET',
+    sensorReadout: 'SCANNING SONAR: PROPOSED (750 kHz)',
+    gasAlert: 'DEPTH WATCHDOG: TARGET CONCEPT',
     accentColor: 'var(--status-warning)',
     accentBg: 'rgba(250, 173, 20, 0.14)',
     accentBorder: 'rgba(250, 173, 20, 0.5)'
@@ -40,12 +40,12 @@ const HAZARD_SLIDES = [
     num: '03',
     category: 'ZERO-VISIBILITY COLLAPSE & SMOKE',
     title: 'Dense Industrial Smoke & Blast Rubble',
-    shortDesc: 'Post-blast structural rubble, fractured concrete, and dense particulate soot where optical cameras fail completely.',
-    fullDesc: 'CyberRover X5 pierces zero-visibility atmospheres using 3x solid-state Livox LIDAR sensors (300k pts/sec) behind sapphire windows and FLIR thermal infrared imaging. Wide steel-reinforced rubber tracks scale fractured rubble and 45° inclines.',
+    shortDesc: 'Proposed future capability: Structural rubble traversal and particulate penetration where optical cameras fail.',
+    fullDesc: 'Target concept for CyberRover X5: proposed integration of 3x solid-state Livox LiDAR sensors behind sapphire crystal windows and radiometric FLIR thermal imaging to map collapse zones through zero-visibility smoke.',
     image: x5HazardSmokeImg,
-    hazardTag: 'X5 ALL-TERRAIN // 360° LIDAR & THERMAL',
-    sensorReadout: '360° SOLID-STATE LIDAR: 300K PTS/SEC',
-    gasAlert: 'FLIR THERMAL IR: SURVIVOR LOCK',
+    hazardTag: 'PROPOSED X5 ROADMAP // 3D LIDAR TARGET',
+    sensorReadout: 'SOLID-STATE LIDAR: PROPOSED CONCEPT',
+    gasAlert: 'THERMAL IR: PROPOSED SENSOR',
     accentColor: 'var(--accent-cyan)',
     accentBg: 'rgba(0, 217, 255, 0.14)',
     accentBorder: 'rgba(0, 217, 255, 0.5)'
@@ -133,9 +133,21 @@ export default function MissionSection() {
             <p style={{ fontSize: '1.0625rem', color: 'var(--text-secondary)', marginBottom: 'var(--space-4)', lineHeight: 1.7 }}>
               Chemical leaks, combustible gas pockets, and structural voids present lethal hazards to safety personnel.
             </p>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: 'var(--space-6)' }}>
-              CyberRover X4 establishes remote physical presence, transmitting live multi-gas concentrations, optical feeds, and spatial sonar telemetry before emergency teams commit to entry.
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9375rem', lineHeight: 1.6, marginBottom: 'var(--space-4)' }}>
+              CyberRover X4.2 provides remote visual observation and relative multi-gas indication, allowing human operators to assess environmental risks before safety teams commit to hazardous entry.
             </p>
+            <div style={{
+              padding: '8px 12px',
+              background: 'rgba(57, 229, 140, 0.06)',
+              border: '1px solid rgba(57, 229, 140, 0.25)',
+              borderRadius: 'var(--radius-xs)',
+              marginBottom: 'var(--space-6)',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.6875rem',
+              color: 'var(--text-secondary)'
+            }}>
+              <strong style={{ color: 'var(--status-nominal)' }}>CURRENT STATUS:</strong> Operator-controlled engineering prototype. Proposed X5 capabilities shown represent future industrial development.
+            </div>
 
             {/* Active Hazard Quick Pill */}
             <div style={{

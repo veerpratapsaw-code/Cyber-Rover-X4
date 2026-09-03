@@ -20,10 +20,10 @@ export default function VisionHUD({ turretImage }) {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-cyan)', letterSpacing: '0.1em' }}>
             <Smartphone size={14} />
-            <span>PRIMARY OPTICAL FEED // SMARTPHONE 1080P 60FPS CAMERA</span>
+            <span>PRIMARY OPTICAL FEED // SMARTPHONE OPERATOR VISUALS</span>
           </div>
           <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-            Chassis-Mounted Phone Camera & Tactical FPV Feed
+            Chassis-Mounted Smartphone Camera & Live FPV
           </div>
         </div>
 
@@ -178,12 +178,12 @@ export default function VisionHUD({ turretImage }) {
           <div style={{ position: 'absolute', top: '8px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5625rem, 1.6vw, 0.6875rem)' }}>
             <span style={{ color: 'var(--status-hazard)', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span className="animate-blink" style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--status-hazard)' }} />
-              LIVE [PHONE CAMERA // 1080P 60FPS]
+              LIVE [SMARTPHONE FPV // OPERATOR FEED]
             </span>
             <span style={{ color: 'var(--accent-cyan)', display: 'flex', gap: '8px' }}>
               <span>ZOOM {zoomLevel.toFixed(1)}x</span>
               <span>•</span>
-              <span>FOV 120° WIDE</span>
+              <span>WIDE ANGLE</span>
               <span>•</span>
               <span style={{ color: 'var(--status-nominal)' }}>EIS ACTIVE</span>
             </span>
@@ -191,8 +191,8 @@ export default function VisionHUD({ turretImage }) {
 
           {/* Bottom Telemetry Bar */}
           <div style={{ position: 'absolute', bottom: '8px', left: '10px', right: '10px', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.5rem, 1.4vw, 0.625rem)', color: 'var(--text-muted)' }}>
-            <span>RESOLUTION: 1920x1080 @ 60FPS</span>
-            <span>TRANSMISSION: RTSP / LOW-LATENCY WEBRTC (28ms)</span>
+            <span>SOURCE: MOBILE OPTICS ENGINE</span>
+            <span>TRANSMISSION: LOCAL WI-FI FPV STREAM</span>
           </div>
         </div>
       </div>

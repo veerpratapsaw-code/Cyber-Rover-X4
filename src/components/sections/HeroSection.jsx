@@ -71,7 +71,7 @@ export default function HeroSection({ telemetry }) {
           color: 'rgba(0, 217, 255, 0.1)',
           marginTop: '6px'
         }}>
-          MODEL X4
+          MODEL X4.2
         </div>
       </div>
 
@@ -93,20 +93,27 @@ export default function HeroSection({ telemetry }) {
 
       {/* Main 3D Composition Grid Container */}
       <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%', textAlign: 'center' }}>
-        {/* Top Minimalist Product Code Badge */}
+        {/* Top Minimalist Product Code Badge with GREEN CURRENT TAG */}
         <div className="reveal-3d" style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
           padding: '5px 16px',
-          background: 'rgba(0, 217, 255, 0.06)',
-          border: '1px solid rgba(0, 217, 255, 0.25)',
+          background: 'rgba(57, 229, 140, 0.08)',
+          border: '1px solid rgba(57, 229, 140, 0.3)',
           borderRadius: 'var(--radius-full)',
-          marginBottom: 'var(--space-4)'
+          marginBottom: 'var(--space-3)'
         }}>
-          <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent-cyan)', boxShadow: '0 0 8px var(--accent-cyan)' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.6875rem, 1.8vw, 0.75rem)', fontWeight: 600, color: 'var(--accent-cyan)', letterSpacing: '0.2em' }}>
-            AUTONOMOUS GROUND RECONNAISSANCE PLATFORM // 2026
+          <span className="animate-blink" style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--status-nominal)', boxShadow: '0 0 8px var(--status-nominal)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.625rem, 1.6vw, 0.75rem)', fontWeight: 700, color: 'var(--status-nominal)', letterSpacing: '0.14em' }}>
+            CYBERROVER X4.2 // CURRENT BUILT & DEMONSTRATED PROTOTYPE (2026)
+          </span>
+        </div>
+
+        {/* Project Mission Sub-Badge */}
+        <div className="reveal-3d" style={{ marginBottom: 'var(--space-3)' }}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.6875rem, 1.8vw, 0.8125rem)', color: 'var(--text-secondary)', letterSpacing: '0.08em' }}>
+            REMOTE RECONNAISSANCE & ENVIRONMENTAL INSPECTION ROVER
           </span>
         </div>
 
@@ -120,7 +127,7 @@ export default function HeroSection({ telemetry }) {
           textTransform: 'uppercase',
           marginBottom: 'var(--space-4)'
         }}>
-          MOVE &nbsp;·&nbsp; SENSE &nbsp;·&nbsp; INSPECT
+          OPERATOR CONTROLLED &nbsp;·&nbsp; SENSOR-ASSISTED NAVIGATION
         </div>
 
         {/* 3D High-Res CyberRover X4 Hero Object with Clean Parallax Tilt */}
@@ -258,7 +265,7 @@ export default function HeroSection({ telemetry }) {
           </div>
         </div>
 
-        {/* 4 Sleek Graphical Telemetry Pills (Uncrowded, High Impact) */}
+        {/* 4 Sleek Graphical Telemetry Pills (Accurate Raw ADC & System Metrics) */}
         <div className="reveal-3d" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 150px), 1fr))',
@@ -269,21 +276,25 @@ export default function HeroSection({ telemetry }) {
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>
             <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>ACOUSTIC SONAR</div>
             <div style={{ color: 'var(--accent-cyan)', fontWeight: 700, fontSize: '1rem' }}>{telemetry.ultrasonicCenter} cm</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.5625rem' }}>PROXIMITY RADAR</div>
           </div>
 
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>
-            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>CO GAS (MQ-7)</div>
-            <div style={{ color: 'var(--status-nominal)', fontWeight: 700, fontSize: '1rem' }}>{telemetry.mq7CO} ppm</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>MQ-7 CO INDICATION</div>
+            <div style={{ color: 'var(--status-nominal)', fontWeight: 700, fontSize: '1rem' }}>{telemetry.mq7CO} <span style={{ fontSize: '0.6875rem' }}>RAW ADC</span></div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.5625rem' }}>[SIMULATED DEMO]</div>
           </div>
 
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>
-            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>OPTICAL CAMERA</div>
-            <div style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '1rem' }}>HD PHONE FPV</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>OPTICAL FEED</div>
+            <div style={{ color: 'var(--accent-blue)', fontWeight: 700, fontSize: '1rem' }}>PHONE FPV</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.5625rem' }}>OPERATOR VISUALS</div>
           </div>
 
           <div style={{ padding: '10px 14px', background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', textAlign: 'left', fontFamily: 'var(--font-mono)' }}>
             <div style={{ color: 'var(--text-muted)', fontSize: '0.625rem', marginBottom: '2px' }}>POWER BUS</div>
-            <div style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1rem' }}>{telemetry.batteryVoltage}V (3S)</div>
+            <div style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1rem' }}>{telemetry.batteryVoltage}V</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: '0.5625rem' }}>3S LI-ION RAIL</div>
           </div>
         </div>
 
@@ -334,8 +345,8 @@ export default function HeroSection({ telemetry }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
-              padding: '12px 22px',
-              background: 'rgba(255, 255, 255, 0.04)',
+              padding: '12px 24px',
+              background: 'var(--bg-elevated)',
               border: '1px solid var(--border-medium)',
               borderRadius: 'var(--radius-xs)',
               color: 'var(--text-secondary)',
@@ -356,6 +367,22 @@ export default function HeroSection({ telemetry }) {
           >
             <span>TECHNICAL DATASHEET</span>
           </button>
+        </div>
+
+        {/* Prototype Engineering Limitation Statement */}
+        <div className="reveal-3d" style={{
+          maxWidth: '680px',
+          margin: '0 auto var(--space-6)',
+          padding: '8px 16px',
+          background: 'rgba(255, 176, 32, 0.05)',
+          border: '1px solid rgba(255, 176, 32, 0.2)',
+          borderRadius: 'var(--radius-xs)',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.6875rem',
+          color: 'var(--text-secondary)',
+          lineHeight: 1.5
+        }}>
+          <strong style={{ color: 'var(--status-warning)' }}>PROTOTYPE NOTICE:</strong> CyberRover X4.2 is an engineering demonstration prototype and is not currently certified for deployment in regulated hazardous environments.
         </div>
 
         {/* Downward Navigation Anchor */}

@@ -39,13 +39,13 @@ const COMPARISON_DATA = [
     x5: 'Hermetically Sealed Internal Sampling Chamber with Micro-Pump'
   },
   {
-    feature: 'Vision & Mapping',
-    x4: 'ESP32-CAM OV2640 + 2-Axis Servo Turret',
+    feature: 'Vision & Optical Feed',
+    x4: 'Mounted Smartphone Camera + Local Wi-Fi FPV Stream',
     x5: 'FLIR Thermal Radiometric LWIR + 360° Solid-State 3D LiDAR SLAM'
   },
   {
     feature: 'Structural Hull Integrity',
-    x4: 'Custom 3D-Printed High-Impact Engineering Polymers',
+    x4: 'Custom 3D-Printed Engineering Polymers',
     x5: 'Marine-Grade 6061-T6 Anodized Aluminum Monocoque (Blast Resistant)'
   }
 ];
@@ -71,32 +71,47 @@ export default function CyberRoverX5Section() {
         letterSpacing: '0.04em',
         textTransform: 'uppercase',
         lineHeight: 0.8,
-        background: 'linear-gradient(180deg, rgba(255, 149, 0, 0.18) 0%, rgba(255, 59, 48, 0.04) 75%, transparent 100%)',
+        background: 'linear-gradient(180deg, rgba(22, 119, 255, 0.18) 0%, rgba(0, 217, 255, 0.04) 75%, transparent 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
         pointerEvents: 'none',
         userSelect: 'none',
         zIndex: 0
       }}>
-        EVOLUTION
+        ROADMAP
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Chapter Header */}
+        {/* Chapter Header with BLUE FUTURE BADGE */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#ff9500', boxShadow: '0 0 10px #ff9500' }} />
-          <div className="chapter-number reveal-3d" style={{ color: '#ff9500', margin: 0 }}>
-            07 // THE FUTURE ROADMAP: CYBERROVER X5
+          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#1677ff', boxShadow: '0 0 10px #1677ff' }} />
+          <div className="chapter-number reveal-3d" style={{ color: '#1677ff', margin: 0 }}>
+            07 // FUTURE DEVELOPMENT & ROADMAP: CYBERROVER X5
           </div>
         </div>
 
         <div className="reveal-3d" style={{ maxWidth: '840px', marginBottom: 'var(--space-10)' }}>
+          <div style={{
+            display: 'inline-block',
+            padding: '4px 12px',
+            background: 'rgba(22, 119, 255, 0.12)',
+            border: '1px solid rgba(22, 119, 255, 0.35)',
+            borderRadius: 'var(--radius-xs)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.6875rem',
+            color: '#1677ff',
+            fontWeight: 700,
+            marginBottom: '12px'
+          }}>
+            PROPOSED INDUSTRIAL PLATFORM // FUTURE CONCEPT & ROADMAP
+          </div>
+
           <h2 className="section-headline" style={{ marginBottom: 'var(--space-4)' }}>
-            From Proof-of-Concept to Industrial Deep Mine Deployment
+            From Prototype Demonstration to Proposed Industrial Platform
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.0625rem', lineHeight: 1.7 }}>
-            While <strong>CyberRover X4.2</strong> is our battle-tested, fully functional working prototype, the 
-            <strong> CyberRover X5</strong> is our commercial-scale blueprint: an explosion-proof, underwater-capable, fiber-tethered platform designed for subterranean coal mines and extreme hazmat disaster zones.
+            While <strong>CyberRover X4.2</strong> is our student-built, demonstrated working prototype, the 
+            <strong> CyberRover X5</strong> represents our proposed commercial-scale blueprint and future engineering roadmap: an ATEX-targeted, submersible tracked platform conceptualized for subterranean coal mines and hazardous void exploration.
           </p>
         </div>
 

@@ -15,9 +15,9 @@ export default function SonarRadar({ liveDistances }) {
     right: liveDistances?.ultrasonicRight || 170
   };
 
-  // Autonomous decision matrix calculation
+  // Sensor-assisted navigation guidance calculation
   let decision = {
-    action: 'FORWARD // FULL TRACTION',
+    action: 'FORWARD // CLEAR TRACTION',
     icon: ArrowUp,
     status: 'nominal',
     reason: 'Forward path unobstructed (> 40cm clearance)',
@@ -219,7 +219,7 @@ export default function SonarRadar({ liveDistances }) {
         </div>
       )}
 
-      {/* Autonomous Decision Output Display */}
+      {/* Sensor-Assisted Navigation Guidance Display */}
       <div style={{
         marginTop: 'var(--space-4)',
         padding: 'var(--space-4)',
@@ -246,7 +246,7 @@ export default function SonarRadar({ liveDistances }) {
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              MOTOR CONTROLLER DIRECTIVE // L298N DUAL H-BRIDGE
+              MOTOR CONTROLLER DIRECTIVE // DUAL BTS7960 HIGH-CURRENT DRIVERS
             </div>
             <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
               {decision.action}
@@ -261,6 +261,17 @@ export default function SonarRadar({ liveDistances }) {
           <div>PWM L: <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{decision.leftPwm}</span></div>
           <div>PWM R: <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{decision.rightPwm}</span></div>
         </div>
+      </div>
+
+      {/* Operator Control Precedence Note */}
+      <div style={{
+        marginTop: '8px',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.625rem',
+        color: 'var(--text-muted)',
+        textAlign: 'center'
+      }}>
+        * Note: Operator commands via ESP-NOW maintain primary priority; ultrasonic logic assists with distance telemetry and collision warning.
       </div>
     </div>
   );

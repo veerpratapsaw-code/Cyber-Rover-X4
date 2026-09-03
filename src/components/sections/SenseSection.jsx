@@ -10,52 +10,52 @@ const SENSOR_MODULES = [
   {
     id: 0,
     code: 'MQ-4',
-    name: 'Methane (CH4) & Mine Deflagration Sensor',
+    name: 'MQ-4 RAW ADC — Methane & Combustible-Gas Indication',
     image: sensorMq4Img,
-    tech: 'SnO2 Micro-Sensor with High CH4 Selectivity',
+    tech: 'SnO2 Semiconductor Gas Indication Sensor',
     targets: 'Methane (CH4), Natural Gas, Coal Mine Fire-Damp',
-    work: 'Engineered specifically for coal mines and gas pipelines. Detects explosive methane gas before it reaches the Lower Explosive Limit (LEL 5%), alerting rescue workers to immediate deflagration risks.',
-    spec: 'ANALOG ADC / SENSITIVITY: 300 - 10000 PPM CH4'
+    work: 'Analog indication sensor for detection of combustible methane gas. Acquired via Arduino Nano 10-bit analog input (0-1023 ADC counts) to indicate relative gas presence before human entry.',
+    spec: 'RAW ANALOG ADC / PROTOTYPE INDICATION (NOT CERTIFIED PPM)'
   },
   {
     id: 1,
     code: 'MQ-7',
-    name: 'Carbon Monoxide (CO) Asphyxiant Sensor',
+    name: 'MQ-7 RAW ADC — Carbon Monoxide Indication',
     image: sensorMq7Img,
-    tech: 'Dual-Cycle Micro Thermal Desorption',
-    targets: 'Carbon Monoxide (CO) - Colorless & Odorless',
-    work: 'Operates on periodic thermal cycling (5V heating for cleaning, 1.4V for CO adsorption) to detect lethal odorless carbon monoxide down to life-critical thresholds.',
-    spec: 'ANALOG ADC / DETECTION: 20 - 2000 PPM CO'
+    tech: 'Dual-Cycle Micro Thermal Indication Sensor',
+    targets: 'Carbon Monoxide (CO) — Colorless & Odorless',
+    work: 'Operates on periodic thermal cycling (5V heating cycle, 1.4V measurement cycle) to provide analog indication of carbon monoxide presence in enclosed voids.',
+    spec: 'RAW ANALOG ADC / PROTOTYPE INDICATION (NOT CERTIFIED PPM)'
   },
   {
     id: 2,
     code: 'MQ-135',
-    name: 'Hazardous Air Quality & Ammonia',
+    name: 'MQ-135 RAW ADC — Air-Quality Indication',
     image: sensorMq135Img,
     tech: 'Broadband Volatile Gas Sensing Core',
     targets: 'Ammonia (NH3), NOx, Alcohol, Benzene, Volatile Smoke',
-    work: 'Monitors industrial atmospheric contamination and volatile chemical solvents, streaming real-time toxic gas safety thresholds directly to the command dashboard.',
-    spec: 'ANALOG ADC / RANGE: 10 - 1000 PPM'
+    work: 'Monitors relative changes in ambient air quality and volatile solvents, streaming analog indication readings to the ground dashboard.',
+    spec: 'RAW ANALOG ADC / PROTOTYPE INDICATION (NOT CERTIFIED PPM)'
   },
   {
     id: 3,
     code: 'BMP-280',
-    name: 'Barometric Pressure & Structural Altitude',
+    name: 'Barometric Pressure & Relative Elevation',
     image: sensorDht22Img,
     tech: 'Piezoresistive Micro-Electro-Mechanical (MEMS)',
-    targets: 'Atmospheric Barometric Pressure (hPa) & Sub-Meter Altitude',
-    work: 'Measures barometric pressure (300 to 1100 hPa) with ±0.12 hPa relative accuracy. Enables autonomous floor-level estimation in multi-story collapsed buildings and vertical mine shaft depth monitoring.',
-    spec: 'FAST I2C / SPI BUS / ±1 METER ALTITUDE ACCURACY'
+    targets: 'Atmospheric Barometric Pressure (hPa) & Relative Elevation',
+    work: 'Measures barometric pressure (300 to 1100 hPa) with relative altitude estimation to help operators assess vertical elevation changes in collapsed structures or shafts.',
+    spec: 'FAST I2C / SPI BUS / RELATIVE ELEVATION ESTIMATION'
   },
   {
     id: 4,
-    code: 'DHT-22',
-    name: 'Digital Temperature & Relative Humidity',
+    code: 'DHT-11',
+    name: 'DHT11 — Ambient Temperature & Relative Humidity',
     image: sensorDht22Img,
-    tech: 'Capacitive Humidity Polymer + NTC Thermistor',
-    targets: 'Ambient Temperature & Atmospheric Moisture Content',
-    work: 'Provides digital 1-wire calibrated temperature (-40°C to +80°C) and humidity (0% to 100% RH) readings to calculate atmospheric thermal equilibrium and dew points.',
-    spec: 'DIGITAL 1-WIRE BUS / ±0.5°C & ±2% RH ACCURACY'
+    tech: 'Resistive Humidity Polymer + NTC Thermistor',
+    targets: 'Ambient Temperature & Ambient Relative Humidity',
+    work: 'Provides digital 1-wire ambient temperature (0°C to 50°C) and relative humidity (20% to 80% RH) readings for local environmental monitoring. Not designed for extreme industrial or fire temperatures.',
+    spec: 'DIGITAL 1-WIRE BUS / AMBIENT RANGE (0°C TO 50°C)'
   }
 ];
 
@@ -270,7 +270,7 @@ export default function SenseSection({ telemetry }) {
                 color: 'var(--accent-cyan)'
               }}>
                 <span>{currentMod.spec}</span>
-                <span style={{ color: 'var(--status-nominal)' }}>CALIBRATED ADC</span>
+                <span style={{ color: 'var(--status-nominal)' }}>RAW ANALOG ADC</span>
               </div>
             </div>
 
@@ -290,14 +290,29 @@ export default function SenseSection({ telemetry }) {
             </div>
           </div>
 
-          {/* Right Column: Live Calibrated PPM Telemetry Gauges (Click to Switch Carousel) */}
+          {/* Right Column: Live Raw ADC Telemetry Gauges (Click to Switch Carousel) */}
           <div className="reveal-3d">
             <h2 className="section-headline" style={{ marginBottom: 'var(--space-2)' }}>
-              Real-Time Atmospheric Spectrum Analysis
+              Environmental Telemetry & Gas Indication
             </h2>
-            <p style={{ color: 'var(--text-muted)', marginBottom: 'var(--space-6)', fontSize: '0.8125rem', fontFamily: 'var(--font-mono)' }}>
-              CALIBRATED PPM CONCENTRATIONS & SAFETY THRESHOLDS (CLICK TO INSPECT)
+            <p style={{ color: 'var(--accent-cyan)', marginBottom: 'var(--space-2)', fontSize: '0.8125rem', fontFamily: 'var(--font-mono)' }}>
+              RAW ANALOG INDICATION GAUGES & RELATIVE THRESHOLDS (CLICK TO INSPECT)
             </p>
+
+            {/* Required Technical Accuracy Disclaimer */}
+            <div style={{
+              padding: '8px 12px',
+              background: 'rgba(255, 176, 32, 0.05)',
+              border: '1px solid rgba(255, 176, 32, 0.25)',
+              borderRadius: 'var(--radius-xs)',
+              marginBottom: 'var(--space-4)',
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.6875rem',
+              color: 'var(--text-secondary)',
+              lineHeight: 1.5
+            }}>
+              <strong style={{ color: 'var(--status-warning)' }}>TECHNICAL DISCLAIMER:</strong> MQ sensor outputs are prototype-level analog indications. They are not certified ppm measurements or definitive hazard classifications. Displayed readings represent simulated demo values.
+            </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {/* MQ-4 Methane Card */}
@@ -313,16 +328,16 @@ export default function SenseSection({ telemetry }) {
                 }}
               >
                 <SensorBar
-                  label="Methane (CH4) & Mine Deflagration"
+                  label="Methane (CH4) Indication"
                   code="MQ-4"
                   value={telemetry.mq4Methane}
-                  unit="ppm"
+                  unit="ADC (Demo)"
                   min={0}
                   max={500}
                   warnThreshold={180}
                   dangerThreshold={350}
-                  description="SnO2 semiconductor sensing layer with high selectivity for CH4 and natural gas."
-                  targetGases="Methane (CH4), Natural Gas, CNG, Fire-damp"
+                  description="Analog indication of combustible gas presence. Raw ADC value."
+                  targetGases="Methane (CH4), Natural Gas, CNG"
                 />
               </div>
 
@@ -339,16 +354,16 @@ export default function SenseSection({ telemetry }) {
                 }}
               >
                 <SensorBar
-                  label="Carbon Monoxide (CO)"
+                  label="Carbon Monoxide (CO) Indication"
                   code="MQ-7"
                   value={telemetry.mq7CO}
-                  unit="ppm"
+                  unit="ADC (Demo)"
                   min={0}
                   max={100}
                   warnThreshold={30}
                   dangerThreshold={60}
-                  description="Thermal cycling sensor for lethal odorless carbon monoxide."
-                  targetGases="CO (20 - 2000 ppm)"
+                  description="Analog thermal-cycled indication of carbon monoxide presence."
+                  targetGases="Carbon Monoxide (CO)"
                 />
               </div>
 
@@ -365,54 +380,54 @@ export default function SenseSection({ telemetry }) {
                 }}
               >
                 <SensorBar
-                  label="Hazardous Air Quality & Benzene"
+                  label="Broad Air Quality Indication"
                   code="MQ-135"
                   value={telemetry.mq135AirQuality}
-                  unit="ppm"
+                  unit="ADC (Demo)"
                   min={0}
                   max={600}
                   warnThreshold={250}
                   dangerThreshold={450}
-                  description="Detects benzene, toxic ammonia, alcohol, and volatile smoke."
-                  targetGases="NH3, NOx, Alcohol, Benzene"
+                  description="Analog broadband indication of air quality and volatile solvents."
+                  targetGases="Volatiles, NH3, Smoke"
                 />
               </div>
 
-              {/* DHT-22 Temp & Humidity Cards */}
+              {/* DHT-11 Temp & Humidity Cards */}
               <div
-                onClick={() => setActiveSensor(3)}
+                onClick={() => setActiveSensor(4)}
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   gap: '10px',
                   cursor: 'pointer',
-                  border: `1px solid ${activeSensor === 3 ? 'var(--accent-blue)' : 'transparent'}`,
+                  border: `1px solid ${activeSensor === 4 ? 'var(--accent-blue)' : 'transparent'}`,
                   borderRadius: 'var(--radius-xs)',
                   padding: '2px',
-                  boxShadow: activeSensor === 3 ? '0 0 20px rgba(22, 119, 255, 0.25)' : 'none',
+                  boxShadow: activeSensor === 4 ? '0 0 20px rgba(22, 119, 255, 0.25)' : 'none',
                   transition: 'all 0.25s ease'
                 }}
               >
                 <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', padding: '12px 14px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)', marginBottom: '4px' }}>
                     <Thermometer size={13} />
-                    <span>DHT-22 TEMP</span>
+                    <span>DHT11 AMBIENT TEMP</span>
                   </div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {telemetry.temperature}°C
                   </div>
-                  <div style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>Range: -40°C to +80°C</div>
+                  <div style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>Ambient Range: 0°C to 50°C</div>
                 </div>
 
                 <div style={{ background: 'var(--bg-elevated)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xs)', padding: '12px 14px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-mono)', fontSize: '0.6875rem', color: 'var(--accent-cyan)', marginBottom: '4px' }}>
                     <Wind size={13} />
-                    <span>DHT-22 HUMIDITY</span>
+                    <span>DHT11 HUMIDITY</span>
                   </div>
                   <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                     {telemetry.humidity}%
                   </div>
-                  <div style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>Range: 0% to 100% RH</div>
+                  <div style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>Ambient Range: 20% to 80% RH</div>
                 </div>
               </div>
             </div>
@@ -472,16 +487,16 @@ export default function SenseSection({ telemetry }) {
                   const mEl = document.getElementById('dispMethane');
                   const cEl = document.getElementById('dispStatus');
                   if (pEl) pEl.innerText = (1013.25 - (val * 0.12)).toFixed(2) + ' hPa';
-                  if (mEl) mEl.innerText = Math.max(80, Math.round(180 + (val * 12))) + ' PPM';
+                  if (mEl) mEl.innerText = Math.max(80, Math.round(180 + (val * 12))) + ' RAW ADC';
                   if (cEl) {
                     if (val > 25) {
-                      cEl.innerText = '⚠ WARNING: HIGH CEILING METHANE ACCUMULATION';
+                      cEl.innerText = '⚠ WARNING: ELEVATED COMBUSTIBLE GAS INDICATION';
                       cEl.style.color = '#ff9500';
                     } else if (val < -10) {
-                      cEl.innerText = '⚠ DEEP SHAFT CO POOLING DETECTED';
+                      cEl.innerText = '⚠ ELEVATED CO ACCUMULATION INDICATION';
                       cEl.style.color = '#ff4444';
                     } else {
-                      cEl.innerText = '● NOMINAL VENTILATION AIRFLOW';
+                      cEl.innerText = '● NOMINAL BASELINE INDICATION';
                       cEl.style.color = '#39e58c';
                     }
                   }
@@ -497,22 +512,22 @@ export default function SenseSection({ telemetry }) {
             {/* Real-time Computed Values */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px' }}>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>BMP280 PRESSURE</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>BMP280 PRESSURE (hPa)</div>
                 <div id="dispPressure" style={{ fontFamily: 'var(--font-mono)', fontSize: '1.125rem', fontWeight: 'bold', color: '#00e5ff', marginTop: '2px' }}>
                   1011.81 hPa
                 </div>
               </div>
               <div style={{ background: 'rgba(255,255,255,0.03)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>CH4 (MQ-4 SENSOR)</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.625rem', color: 'rgba(255,255,255,0.5)' }}>MQ-4 CH4 INDICATION [DEMO]</div>
                 <div id="dispMethane" style={{ fontFamily: 'var(--font-mono)', fontSize: '1.125rem', fontWeight: 'bold', color: '#ff9500', marginTop: '2px' }}>
-                  324 PPM
+                  324 RAW ADC
                 </div>
               </div>
             </div>
           </div>
 
           <div id="dispStatus" style={{ marginTop: '14px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: '#39e58c', textAlign: 'center' }}>
-            ● NOMINAL VENTILATION AIRFLOW
+            ● NOMINAL BASELINE INDICATION
           </div>
         </div>
       </div>

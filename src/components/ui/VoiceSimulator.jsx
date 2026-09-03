@@ -3,7 +3,7 @@ import { Mic, Cpu, Terminal, Volume2, Play, Sparkles, CheckCircle2 } from 'lucid
 
 const PRESET_COMMANDS = [
   {
-    text: "Inspect chemical pipeline ahead and report carbon monoxide levels.",
+    text: "Check chemical pipeline ahead and report carbon monoxide levels.",
     intent: "INSPECT_HAZARD",
     json: {
       action: "NAVIGATE_INSPECT",
@@ -12,18 +12,18 @@ const PRESET_COMMANDS = [
       speed_pwm: 180,
       report_voice: true
     },
-    tts: "Acknowledged. Advancing 4WD chassis. Activating MQ-7 CO sensor. Current reading: 12 ppm nominal."
+    tts: "Acknowledged. Advancing 4WD chassis. Polling MQ-7 CO sensor. Current reading: raw ADC indication nominal."
   },
   {
-    text: "Track human face and align camera center.",
-    intent: "OPENCV_TRACK_FACE",
+    text: "Simulate proposed target identification test on operator feed.",
+    intent: "EXPERIMENTAL_TARGET_IDENT",
     json: {
-      action: "ENABLE_CV_TRACKING",
-      target_class: "HUMAN_FACE",
-      model: "HAAR_CASCADE_FRONTAL",
-      tracking_feedback: "OPTICAL_TARGET_LOCK"
+      action: "SIMULATE_TARGET_LOCK",
+      target_class: "VISUAL_MARKER",
+      status: "EXPERIMENTAL_ROADMAP",
+      tracking_feedback: "OPTICAL_BOUNDING_BOX"
     },
-    tts: "Facial recognition active. Target acquired at confidence 98.4%. Tracking target on phone camera."
+    tts: "Simulation mode: Proposed optical target locked on operator ground cockpit display."
   },
   {
     text: "Emergency stop! Obstacle detected in forward path.",
@@ -32,7 +32,7 @@ const PRESET_COMMANDS = [
       action: "E_STOP",
       motor_kill: true,
       brake_mode: "DYNAMIC_SHORT",
-      override_autonomous: true
+      override_assist: true
     },
     tts: "Emergency stop engaged! All motor H-bridges de-energized. System stationary."
   }
@@ -64,7 +64,7 @@ export default function VoiceSimulator() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-6)', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent-cyan)', letterSpacing: '0.1em' }}>
-            MULTIMODAL INTELLIGENCE // GEMINI API + SPEECH RECOGNITION
+            EXPERIMENTAL ROADMAP // SIMULATED OPERATOR VOICE COMMANDS
           </div>
           <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)' }}>
             Natural Voice Command & Intent Pipeline
